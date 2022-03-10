@@ -9,6 +9,9 @@ import { NegocioComponent } from './componentes/negocio/negocio.component';
 import { RutaNegociosPropiosComponent } from './rutas/ruta-negocios-propios/ruta-negocios-propios.component';
 import { RutaEditarNegocioPropioComponent } from './rutas/ruta-editar-negocio-propio/ruta-editar-negocio-propio.component';
 import {GoogleMapsModule} from "@angular/google-maps";
+import { SocialMediaComponent } from './componentes/social-media/social-media.component';
+import { EstrellasComponent } from './componentes/estrellas/estrellas.component';
+import { ComentarioComponent } from './componentes/comentario/comentario.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +20,10 @@ import {GoogleMapsModule} from "@angular/google-maps";
     RutaNegocioComponent,
     NegocioComponent,
     RutaNegociosPropiosComponent,
-    RutaEditarNegocioPropioComponent
+    RutaEditarNegocioPropioComponent,
+    SocialMediaComponent,
+    EstrellasComponent,
+    ComentarioComponent
   ],
   imports: [
     BrowserModule,

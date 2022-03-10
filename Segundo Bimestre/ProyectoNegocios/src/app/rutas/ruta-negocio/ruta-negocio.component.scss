@@ -1,0 +1,48 @@
+#nombreNegocio {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: 5vh;
+}
+#numeroEstrellas {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 100;
+  font-style: italic;
+  font-size: 5vh;
+}
+h2 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: 2vh;
+}
+.infoProducto, .telefono {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 2vh;
+}
+#productoNombre {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: 2vh;
+}
+ol {
+  margin-right: 5vh;
+}
+.panel {
+  max-height: 90vh;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+#comentarios {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: 4vh;
+}
+#numeroComentarios {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 100;
+  font-style: italic;
+  font-size: 4vh;
+}
+.panelComentarios {
+  max-height: 55vh;
+}

@@ -1,11 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
 nav {
   background-color: #02A2B9;
-  height: 9vh;
+  height: 10vh;
 }
 #titulo {
   font-family: 'Comic Neue', cursive;
   font-weight: 700;
   font-size: 3vh;
   color: white;
+}
+/* Scroll Bar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 2vh;
+  border: 1px solid #8e8e8e;
+}
+/* Track */
+::-webkit-scrollbar-track:hover {
+  background-color: #f6f6f6;
+  border: 1px solid #8e8e8e;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #02a2b9;
+  border-radius: 30px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #027187;
 }

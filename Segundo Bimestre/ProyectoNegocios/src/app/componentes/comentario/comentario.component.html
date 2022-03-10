@@ -1,0 +1,21 @@
+<div class="card">
+  <div class="card-body">
+    <div class="d-flex flex-row justify-content-between">
+      <!-- Título -->
+      <h5 class="card-title">{{comentario.titulo}</h5>
+      <!-- Estrellas -->
+      <!-- TODO: {{comentario.puntaje}} -->
+      <app-estrellas [puntaje]="{{comentario!.puntaje}}"></app-estrellas>
+    </div>
+    <!-- Mensaje -->
+    <p class="card-text pt-3">{{comentario.mensaje}Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+    <div class="d-flex flex-row">
+      <!-- TODO: Foto de perfil -->
+
+      <!-- Usuario -->
+      <h6 id="nombreUsuario" class="card-subtitle mb-2">{{usuario !!!}</h6>
+      <!-- Fecha del comentario -->
+      <h6 id="fechaComentario" class="card-subtitle mb-2 px-5">Realizado el: {{comentario.fecha}</h6>
+    </div>
+  </div>
+</div>

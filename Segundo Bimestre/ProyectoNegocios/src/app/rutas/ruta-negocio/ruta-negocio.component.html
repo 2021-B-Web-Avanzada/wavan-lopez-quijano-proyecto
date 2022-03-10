@@ -1,8 +1,87 @@
-<div class="row">
-  <div class="col-6 border">
-    asdasd<br>asdasd<br>asdasd<br>asdasd<br>asdasd<br>asdasd<br>asdasd<br>
+<div class="row mx-0 w-100">
+  <!-- Panel izquierdo -->
+  <div class="panel col-12 col-lg-6 pb-5 px-0">
+    <!-- Imagen -->
+    <img src="https://i.imgur.com/uQrreWm.png" class="img-fluid">
+    <!-- Información -->
+    <div class="d-flex flex-row justify-content-between px-5 pt-4">
+      <!-- Nombre del negocio -->
+      <h1 id="nombreNegocio" class="mb-0 mt-1">Nombre del negocio</h1>
+      <!-- Estrellas -->
+      <div class="d-flex flex-row">
+        <span id="numeroEstrellas" class="px-3">4</span>
+        <app-estrellas class="d-flex flex-row" [puntaje]="puntajePromedio"></app-estrellas>
+      </div>
+    </div>
+    <!-- Descripción -->
+    <div class="d-flex flex-row px-5 my-4">
+      {{negocio.descripcion}
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eu volutpat odio facilisis mauris sit amet massa vitae.
+    </div>
+    <!-- Información -->
+    <div class="d-flex flex-row px-5">
+      <!-- Productos o servicios -->
+      <div class="col-7">
+        <h2>Productos o servicios</h2>
+        <!-- Itera por la lista de productos -->
+        <ol class="list-group list-group-numbered">
+          <li *ngFor="let producto of productos"
+            class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto infoProducto text-wrap">
+              <div id="productoNombre" class="text-wrap pt-1">{{producto.nombre}}</div>
+              {{producto.descripcion}}
+            </div>
+            <span class="badge bg-primary rounded-pill infoProducto">{{producto.precio | currency}}</span>
+          </li>
+        </ol>
+      </div>
+      <!-- Contacto -->
+      <div class="col-5">
+        <!-- Social media -->
+        <h2>Redes sociales y sitio web</h2>
+        <div class="d-flex flex-row justify-content-center pt-1 pb-4">
+          <app-social-media [enlace_facebook]="negocio.enlace_facebook"
+                            [enlace_instagram]="negocio.enlace_instagram"
+                            [enlace_sitio_web]="negocio.enlace_sitio_web"
+          ></app-social-media>
+        </div>
+        <!-- Números telefónicos -->
+        <h2>Números telefónicos</h2>
+        <div class="d-flex flex-row justify-content-center pt-2">
+          <svg height="6vh" width="6vh" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M511.2 387l-23.25 100.8c-3.266 14.25-15.79 24.22-30.46 24.22C205.2 512 0 306.8 0 54.5c0-14.66 9.969-27.2 24.22-30.45l100.8-23.25C139.7-2.602 154.7 5.018 160.8 18.92l46.52 108.5c5.438 12.78 1.77 27.67-8.98 36.45L144.5 207.1c33.98 69.22 90.26 125.5 159.5 159.5l44.08-53.8c8.688-10.78 23.69-14.51 36.47-8.975l108.5 46.51C506.1 357.2 514.6 372.4 511.2 387z"/></svg>
+          <div class="px-3">
+            <div class="d-flex flex-row telefono">
+                prov=>'(02)' {{negocio.telefono_fijo}}
+            </div>
+            <div class="d-flex flex-row telefono">
+              {{negocio.telefono_movil}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="col-6 border">
-    asdasd<br>asdasd<br>asdasd<br>asdasd<br>asdasd<br>asdasd<br>asdasd<br>
+
+  <!-- Panel derecho -->
+  <div class="col-12 col-lg-6 px-0 py-3">
+    <!-- Número de comentarios -->
+    <div class="d-flex flex-row px-5">
+      <span id="comentarios">
+        Comentarios: <span id="numeroComentarios">{{cantidadComentarios}}</span>
+      </span>
+    </div>
+    <!-- Comentarios -->
+    <div class="panel px-4 panelComentarios">
+<!--      <div class="d-flex flex-row px-5">-->
+        <app-comentario *ngFor="let comentario of comentarios"
+                        [comentario]="comentario"
+                        class="p-3"
+        ></app-comentario>
+<!--      </div>-->
+    </div>
+    <!-- Escribir comentario -->
+    <div class="d-flex flex-row px-5">
+      <!-- TODO: Caja comentario -->
+    </div>
   </div>
 </div>

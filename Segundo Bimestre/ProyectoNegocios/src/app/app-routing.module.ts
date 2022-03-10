@@ -11,7 +11,7 @@ const routes: Routes = [
     component: RutaMapaComponent,
   },
   {
-    path: 'negocio/:negocioID',
+    path: 'negocio/:id_negocio',
     component: RutaNegocioComponent,
   },
   {
@@ -19,7 +19,7 @@ const routes: Routes = [
     component: RutaNegociosPropiosComponent,
   },
   {
-    path: 'misNegocios/:negocioID',
+    path: 'misNegocios/:id_negocio',
     component: RutaEditarNegocioPropioComponent,
   },
 ];

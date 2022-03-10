@@ -63,8 +63,8 @@ export class RutaMapaComponent implements OnInit {
     }
   }
 
-  verNegocio(negocioID: number) {
-    const url = ['/negocio', negocioID];
+  verNegocio(id_negocio: number) {
+    const url = ['/negocio', id_negocio];
     this.router.navigate(url);
   }
 
@@ -72,7 +72,7 @@ export class RutaMapaComponent implements OnInit {
     this.marcadores = [];
     // TODO: this.negocios.forEach( (negocio) => {
     this.marcadores.push({
-      negocioID: 1, // TODO: negocioID: negocio.ID,
+      id_negocio: 1, // TODO: id_negocio: negocio.id_negocio,
       posicion: {
         // TODO: lat: negocio.latitud,
         lat: this.centroMapa.lat,
