@@ -1,0 +1,61 @@
+<div class="d-flex flex-row justify-content-center my-4">
+  <!-- Filtro Categorías -->
+  <div class="col-2">
+    <span class="labelFiltro">Categoría:</span>
+    <div class="dropdown filtro mt-1">
+      <button class="btn dropdown-toggle" type="button" id="filtroCategoria" data-bs-toggle="dropdown" aria-expanded="false">
+        <span class="mx-3">{{categoriaSeleccionada}}</span>
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="filtroCategoria">
+        <li>
+          <a class="dropdown-item" (click)="filtrarPorCategoria('Categoría')"
+             [class.bg-secondary]="categoriaSeleccionada == 'Categoría'"
+          >Categoría</a>
+        </li>
+        <li *ngFor="let categoria of categorias;">
+          <a class="dropdown-item" (click)="filtrarPorCategoria(categoria)"
+             [class.active]="categoriaSeleccionada == categoria">
+            {{categoria}}
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!-- Filtro Provincias -->
+  <div class="col-2">
+    <span class="labelFiltro">Provincia:</span>
+    <div class="dropdown filtro mt-1">
+      <button class="btn dropdown-toggle" type="button" id="filtroProvincia" data-bs-toggle="dropdown" aria-expanded="false">
+        <span class="mx-3">{{provinciaSeleccionada}}</span>
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="filtroProvincia">
+        <li>
+          <a class="dropdown-item" (click)="filtrarPorProvincia('Provincia')"
+             [class.active]="provinciaSeleccionada == 'Provincia'"
+          >Provincia</a>
+        </li>
+        <li *ngFor="let provincia of provincias;">
+          <a class="dropdown-item" (click)="filtrarPorProvincia(provincia)"
+             [class.active]="provinciaSeleccionada == provincia">
+            {{provincia}}
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="d-flex flex-row justify-content-center">
+  <google-map height="75vh" width="180vh"
+              [center]="centroMapa"
+  >
+    <map-marker *ngFor="let marcador of marcadores"
+                [position]="marcador.posicion"
+                [label]="marcador.label"
+                [title]="marcador.title"
+                [clickable]="true"
+                (mapClick)="verNegocio(marcador.negocioID)"
+    ></map-marker>
+    <!--                [options]="marcador.options"-->
+  </google-map>
+</div>
