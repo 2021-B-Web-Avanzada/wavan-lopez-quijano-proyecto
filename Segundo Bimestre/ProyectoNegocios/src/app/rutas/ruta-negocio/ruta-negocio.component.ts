@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute} from "@angular/router";
+import {NegocioAPIService} from "../../servicios/api/negocio-api.service";
 
 @Component({
   selector: 'app-ruta-negocio',
@@ -7,7 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RutaNegocioComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private readonly activatedRoute: ActivatedRoute,
+    private readonly negocioAPIService: NegocioAPIService,
+  ) { }
 
   // TODO: Recibir informacion de la BDD en el ngOnInit
   negocio = {
@@ -43,6 +48,15 @@ export class RutaNegocioComponent implements OnInit {
   cantidadComentarios?: number;
 
   ngOnInit(): void {
+    // Parámetros de consulta
+    this.activatedRoute.params
+      .subscribe({
+        next: (params) => {
+          const id_negocio = params['id_negocio'];
+          console.log(this.negocioAPIService.getNegocioPorID(id_negocio));
+        }
+      })
+
     // TODO: Obtener datos del negocio
 
     // Calcular estrellas

@@ -72,12 +72,10 @@
     </div>
     <!-- Comentarios -->
     <div class="panel px-4 panelComentarios">
-<!--      <div class="d-flex flex-row px-5">-->
         <app-comentario *ngFor="let comentario of comentarios"
                         [comentario]="comentario"
                         class="p-3"
         ></app-comentario>
-<!--      </div>-->
     </div>
     <!-- Escribir comentario -->
     <div class="d-flex flex-row px-5">
