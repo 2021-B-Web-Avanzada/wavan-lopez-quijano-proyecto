@@ -6,6 +6,7 @@ import {CategoriaAPIService} from "../../servicios/api/categoria/categoria-api.s
 import {CategoriaModelo} from "../../modelos/categoria.modelo";
 import {ProvinciaAPIService} from "../../servicios/api/provincia/provincia-api.service";
 import {ProvinciaModelo} from "../../modelos/provincia.modelo";
+import {AuthService} from "../../servicios/autenticacion/autenticacion.service";
 
 @Component({
   selector: 'app-ruta-mapa',
@@ -19,6 +20,7 @@ export class RutaMapaComponent implements OnInit {
     private readonly negocioAPIService: NegocioAPIService,
     private readonly catgoriaAPIService: CategoriaAPIService,
     private readonly provinciaAPIService: ProvinciaAPIService,
+    private readonly autenticacion: AuthService
   ) { }
 
   // Sin filtros
@@ -55,6 +57,8 @@ export class RutaMapaComponent implements OnInit {
       // Obtener provincias
       this.provincias = queryProvincias.data as ProvinciaModelo[];
     });
+    //TODO: MANERA DE OBTENER INFO
+    console.log(this.autenticacion.id_usuario)
   }
 
   seleccionarCategoria(categoria: any) {
@@ -106,12 +110,12 @@ export class RutaMapaComponent implements OnInit {
           lng: negocio.longitud,
         },
         label: {
-          color: 'blue',
+          color: 'white',
+
           text: negocio.nombre,
         },
         title: negocio.nombre,
-        // TODO: Sera de dejar esta animacion
-        // options: { animation: google.maps.Animation.BOUNCE },
+        options: { animation: google.maps.Animation.BOUNCE },
       })
     });
   }

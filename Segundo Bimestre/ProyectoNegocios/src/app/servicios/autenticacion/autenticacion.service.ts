@@ -1,16 +1,19 @@
 import {Injectable} from "@angular/core";
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthService{
 
   inicioSesion = false;
-  rolUsuario = '';
+  rol = '';
+  id_usuario :number = 0;
 
   esAdministrador() {
-    return this.inicioSesion && this.rolUsuario == 'administrador';
+    return this.inicioSesion && this.rol == 'administrador';
   }
 
   esUsuario() {
-    return this.inicioSesion && this.rolUsuario == 'usuario';
+    return this.inicioSesion && this.rol == 'usuario';
   }
 }
