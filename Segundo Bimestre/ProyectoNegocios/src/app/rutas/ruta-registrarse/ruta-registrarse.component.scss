@@ -4,17 +4,16 @@
   min-height: 100vh;
   background-size: cover;
 }
-#espacioImg{
-  margin-top: 15vh;
-}
 #formulario{
   border-radius: 30px;
-  min-width: 40vw;
-  height: 70%;
+  min-width: 50vw;
+  height: 80%;
   position: center;
 }
 #posicionObjetos{
-  margin: 10%;
+  margin-top: 5%;
+  margin-left: 5%;
+  margin-right: 5%;
 }
 .entradas{
   margin-bottom: 2vh;
@@ -24,12 +23,17 @@
   background-color: #02A2B9;
   min-width: 20vw;
 }
-#imgEstilo{
-  background-color: white;
-  width:170px;
-  height:150px;
+#tituloEstilo{
+  width:400px;
+  height: 60px;
   position: absolute;
-  top: 15vh
+  top: 15vh;
+  background-color: #02A2B9;
+  color: white;
+  border-radius: 25px;
+  vertical-align: middle;
+  horiz-align: center;
+  text-align: center;
 }
 #enlace{
   color: #02A2B9;

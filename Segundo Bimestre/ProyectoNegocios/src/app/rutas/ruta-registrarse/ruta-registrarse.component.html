@@ -1,38 +1,58 @@
 <div id="background" class="d-flex flex-row justify-content-center">
   <div *ngIf="formGroup" class="vh-100 row m-0 align-items-center justify-content-center d-flex flex-row justify-content-center">
-    <img class="rounded-circle" id="imgEstilo" alt="persona" src="https://us.123rf.com/450wm/tuktukdesign/tuktukdesign1606/tuktukdesign160600119/59070200-icono-de-usuario-hombre-perfil-hombre-de-negocios-avatar-icono-persona-en-la-ilustraci%C3%B3n-vectorial.jpg?ver=6">
     <form [formGroup]="formGroup" class="col-auto container bg-dark text-light" id="formulario">
-      <div id="posicionObjetos" class="row" id="espacioImg">
+      <div class="m-0 row justify-content-center">
+        <h3 id="tituloEstilo" class="col-auto">Regístrate</h3>
+      </div>
+      <div id="posicionObjetos" class="row" >
         <div class="col-6">
           <div class="form-group entradas" >
             <label for="nombre">Nombre completos:</label>
-            <input type="text" class="form-control" id="nombre" placeholder="Nombre completos">
+            <input formControlName="nombre" type="text" class="form-control" id="nombre" placeholder="Nombre completos">
           </div>
           <div class="form-group entradas">
             <label for="contrasena">Contraseña:</label>
-            <input type="password" class="form-control" id="contrasena" placeholder="***************">
+            <input formControlName="contrasena" type="password" class="form-control" id="contrasena" placeholder="***************">
           </div>
-          <div class="row">
             <div class="form-group entradas">
-              <label for="fecha">Contraseña:</label>
-              <input type="date" class="form-control" id="fecha" placeholder="***************">
+              <label for="fecha">Fecha de Nacimiento:</label>
+              <input formControlName="fecha" type="date" class="form-control" id="fecha">
+            </div>
+          </div>
+        <div class="col-6">
+            <div class="form-group entradas">
+            <label for="correo_electronico">Correo Electrónico:</label>
+            <input formControlName="correo" type="email" class="form-control" id="correo_electronico" placeholder="example@email.com">
+          </div>
+          <div class="form-group entradas">
+            <label for="contrasenaConfirmacion">Confirmar contraseña:</label>
+            <input formControlName="contrasenaConfirmacion" type="password" class="form-control" id="contrasenaConfirmacion" placeholder="***************">
+          </div>
+          <div class="row entradas">
+            <div class="col-6">
+              <label for="genero">Género:</label>
+              <select formControlName="genero" class="form-select" id="genero">
+                <option value="Femenino">Femenino</option>
+                <option value="Masculino">Masculino</option>
+              </select>
+            </div>
+            <div class="col-6">
+              <label for="provincia">Provincia:</label>
+              <select formControlName="provincia" class="form-select" id="provincia">
+                <option *ngFor="let provincia of listaProvincias" value="{{provincia.id_provincia}}">{{provincia.nombre}}</option>
+              </select>
             </div>
           </div>
         </div>
 
-        <div class="form-group entradas"></div>
-          <label for="correo_electronico">Correo Electrónico:</label>
-          <input type="email" class="form-control" id="correo_electronico" placeholder="example@email.com">
-        </div>
-
-        <div class="d-flex flex-row justify-content-center">
-          <button (click)="registrarse()" type="submit" class="btn btn-primary entradas" id="colorBoton">¡REGISTRATE YA!</button>
-        </div>
-        <div class="d-flex flex-row justify-content-center">
-          <span>¿No tienes una cuenta? <a [routerLink]="['/registro']" id="enlace">Registrate aquí</a>
+      </div>
+      <div class="d-flex flex-row justify-content-center">
+        <button [disabled]="formGroup.invalid" (click)="registrarse()" type="submit" class="btn btn-primary entradas" id="colorBoton">¡REGISTRATE YA!</button>
+      </div>
+      <div class="d-flex flex-row justify-content-center">
+          <span>¿Ya tienes una cuenta? <a [routerLink]="['/registro']" id="enlace">Inicia sesión aquí</a>
         </span>
-        </div>
-   
+      </div>
     </form>
   </div>
 </div>
