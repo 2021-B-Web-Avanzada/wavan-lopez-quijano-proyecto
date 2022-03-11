@@ -22,7 +22,7 @@ export class ComentarioAPIService {
   // TODO: (Para tener un estándar xd)
 
   // Create
-  async createUsuario(comentario: ComentarioModelo){
+  async createComentario(comentario: ComentarioModelo){
     const { data, error } = await this.supabaseClient
       .from<ComentarioModelo>(this.TABLA_COMENTARIO)
       .insert(comentario)

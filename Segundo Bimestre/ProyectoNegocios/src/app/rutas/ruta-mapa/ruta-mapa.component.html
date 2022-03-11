@@ -1,21 +1,22 @@
-<div class="d-flex flex-row justify-content-center my-4">
+<!-- Filtros -->
+<div class="d-flex flex-row justify-content-center mt-2 mb-3">
   <!-- Filtro Categorías -->
   <div class="col-2">
     <span class="labelFiltro">Categoría:</span>
     <div class="dropdown filtro mt-1">
-      <button class="btn dropdown-toggle" type="button" id="filtroCategoria" data-bs-toggle="dropdown" aria-expanded="false">
-        <span class="mx-3">{{categoriaSeleccionada}}</span>
+      <button class="btn dropdown-toggle" [class.filtrado]="categoriaSeleccionada != TODAS_CATEGORIAS" type="button" id="filtroCategoria" data-bs-toggle="dropdown" aria-expanded="false">
+        <span class="mx-3 text-wrap">{{categoriaSeleccionada.nombre}}</span>
       </button>
       <ul class="dropdown-menu" aria-labelledby="filtroCategoria">
         <li>
-          <a class="dropdown-item" (click)="filtrarPorCategoria('Categoría')"
-             [class.bg-secondary]="categoriaSeleccionada == 'Categoría'"
-          >Categoría</a>
+          <a class="dropdown-item text-center" (click)="seleccionarCategoria(TODAS_CATEGORIAS)"
+             [class.active]="categoriaSeleccionada == TODAS_CATEGORIAS"
+          >Todas</a>
         </li>
         <li *ngFor="let categoria of categorias;">
-          <a class="dropdown-item" (click)="filtrarPorCategoria(categoria)"
-             [class.active]="categoriaSeleccionada == categoria">
-            {{categoria}}
+          <a class="dropdown-item" (click)="seleccionarCategoria({ id_categoria: categoria.id_categoria , nombre: categoria.nombre })"
+             [class.active]="categoriaSeleccionada.nombre == categoria.nombre">
+            {{categoria.nombre}}
           </a>
         </li>
       </ul>
@@ -25,19 +26,19 @@
   <div class="col-2">
     <span class="labelFiltro">Provincia:</span>
     <div class="dropdown filtro mt-1">
-      <button class="btn dropdown-toggle" type="button" id="filtroProvincia" data-bs-toggle="dropdown" aria-expanded="false">
-        <span class="mx-3">{{provinciaSeleccionada}}</span>
+      <button class="btn dropdown-toggle" [class.filtrado]="provinciaSeleccionada != TODAS_PROVINCIAS" type="button" id="filtroProvincia" data-bs-toggle="dropdown" aria-expanded="false">
+        <span class="mx-3 text-wrap">{{provinciaSeleccionada.nombre}}</span>
       </button>
-      <ul class="dropdown-menu" aria-labelledby="filtroProvincia">
+      <ul class="dropdown-menu dropPanel" aria-labelledby="filtroProvincia">
         <li>
-          <a class="dropdown-item" (click)="filtrarPorProvincia('Provincia')"
-             [class.active]="provinciaSeleccionada == 'Provincia'"
-          >Provincia</a>
+          <a class="dropdown-item text-center" (click)="seleccionarProvincia(TODAS_PROVINCIAS)"
+             [class.active]="provinciaSeleccionada == TODAS_PROVINCIAS"
+          >Todas</a>
         </li>
         <li *ngFor="let provincia of provincias;">
-          <a class="dropdown-item" (click)="filtrarPorProvincia(provincia)"
-             [class.active]="provinciaSeleccionada == provincia">
-            {{provincia}}
+          <a class="dropdown-item" (click)="seleccionarProvincia({ id_provincia: provincia.id_provincia , nombre: provincia.nombre })"
+             [class.active]="provinciaSeleccionada.nombre == provincia.nombre">
+            {{provincia.nombre}}
           </a>
         </li>
       </ul>
@@ -45,8 +46,9 @@
   </div>
 </div>
 
+<!-- Mapa -->
 <div class="d-flex flex-row justify-content-center">
-  <google-map height="75vh" width="180vh"
+  <google-map height="70vh" width="190vh"
               [center]="centroMapa"
   >
     <map-marker *ngFor="let marcador of marcadores"
@@ -55,7 +57,7 @@
                 [title]="marcador.title"
                 [clickable]="true"
                 (mapClick)="verNegocio(marcador.id_negocio)"
+                [options]="marcador.options"
     ></map-marker>
-    <!--                [options]="marcador.options"-->
   </google-map>
 </div>

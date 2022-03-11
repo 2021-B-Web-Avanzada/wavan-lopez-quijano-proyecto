@@ -26,7 +26,7 @@ export class NegocioAPIService {
   }
 
   // Read All
-  async readNegocio() {
+  async readNegocios() {
     const { data, error } = await this.supabaseClient
       .from<NegocioModelo>(this.TABLA_NEGOCIO)
       .select()
@@ -57,6 +57,17 @@ export class NegocioAPIService {
     const { data, error } = await this.supabaseClient
       .from<NegocioModelo>(this.TABLA_NEGOCIO)
       .update({estado: estadoCambiado})
+      .eq('id_negocio', id_negocio)
+    return { data, error };
+  }
+
+  async updatePuntajesComentariosNegocio(id_negocio: number, suma_puntajes: number, cantidad_comentarios: number){
+    const { data, error } = await this.supabaseClient
+      .from<NegocioModelo>(this.TABLA_NEGOCIO)
+      .update({
+        suma_puntajes: suma_puntajes,
+        cantidad_comentarios: cantidad_comentarios,
+      })
       .eq('id_negocio', id_negocio)
     return { data, error };
   }

@@ -49,7 +49,7 @@ ol {
   font-size: 4vh;
 }
 .panelComentarios {
-  max-height: 55vh;
+  max-height: 50vh;
 }
 .panelComentarios:hover {
   box-shadow: inset 0 0 10px 5px #AAAAAA;
@@ -62,14 +62,33 @@ ol {
   font-family: 'Roboto', sans-serif;
   font-weight: 700;
   font-size: 2vh;
-  width: 20vh;
+  width: 15vh;
 }
 textarea {
-  width: 50vh;
+  width: 84vh;
   border: none;
   resize: none;
 }
 .comentarioFormulario {
-  width: 50vh;
+  width: 85vh;
   border: 1px solid #02a2b9;
+}
+#barraInferiorComentario {
+  width: 85vh;
+  background-color: #ccecf1;
+  border-top: 1px solid #02a2b9;
+}
+.goldStar {
+  fill: #fec20a;
+}
+.emptyStar {
+  fill: #f6f6f6;
+}
+textarea:focus {
+  box-shadow: none;
+}
+#preguntaPuntaje {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 2vh;
 }

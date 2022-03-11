@@ -11,3 +11,16 @@
 .labelFiltro {
   font-family: "Roboto Light", sans-serif;
 }
+.dropPanel {
+  max-height: 50vh;
+  min-width: fit-content;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+.filtrado {
+  background-color: #c0dbe1;
+}
+.dropdown-toggle {
+  //width: fit-content;
+}

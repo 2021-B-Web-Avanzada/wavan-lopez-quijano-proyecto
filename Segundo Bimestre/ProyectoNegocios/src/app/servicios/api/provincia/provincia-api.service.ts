@@ -1,41 +1,45 @@
 import { Injectable } from '@angular/core';
 import {createClient, SupabaseClient} from "@supabase/supabase-js";
 import {initSupabase} from "../../../supabase/init.supabase";
-import {CategoriaModelo} from "../../../modelos/categoria.modelo";
+import {ProvinciaModelo} from "../../../modelos/provincia.modelo";
 
 @Injectable({
   providedIn: 'root'
 })
-export class CategoriaAPIService {
+export class ProvinciaAPIService {
 
   supabaseClient: SupabaseClient = createClient(
     initSupabase.url as string,
     initSupabase.key as string
   )
 
-  TABLA_CATEGORIA = 'Categoria';
+  TABLA_PROVINCIA = 'Provincia';
 
   constructor() { }
 
-  // TODO: En los métodos CRUD que necesiten clave foránea pon primero la Foreign Key y luego la Primary Key de ser necesario
-  // TODO: (Para tener un estándar xd)
+  // Create
+  async createProvincia(provincia: ProvinciaModelo){
+    const { data, error } = await this.supabaseClient
+      .from<ProvinciaModelo>(this.TABLA_PROVINCIA)
+      .insert(provincia)
+    return { data, error };
+  }
 
   // Read All
-  async readCategorias() {
+  async getProvincias() {
     const { data, error } = await this.supabaseClient
-      .from<CategoriaModelo>(this.TABLA_CATEGORIA)
+      .from<ProvinciaModelo>(this.TABLA_PROVINCIA)
       .select()
     return { data, error };
   }
 
   // Read By ID
-  async readCategoriaPorID(id_categoria: number) {
+  async getProvinciaPorID(id_provincia: number) {
     const { data, error } = await this.supabaseClient
-      .from<CategoriaModelo>(this.TABLA_CATEGORIA)
+      .from<ProvinciaModelo>(this.TABLA_PROVINCIA)
       .select()
-      .eq('id_categoria', id_categoria)
+      .eq('id_provincia', id_provincia)
       .single()
     return { data, error };
   }
-
 }

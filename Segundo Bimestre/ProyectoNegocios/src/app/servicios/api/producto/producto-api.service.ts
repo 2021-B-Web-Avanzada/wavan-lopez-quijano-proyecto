@@ -18,7 +18,7 @@ export class ProductoAPIService {
   constructor() { }
 
   // Create
-  async createUsuario(producto: ProductoModelo){
+  async createProducto(producto: ProductoModelo){
     const { data, error } = await this.supabaseClient
       .from<ProductoModelo>(this.TABLA_PRODUCTO)
       .insert(producto)
