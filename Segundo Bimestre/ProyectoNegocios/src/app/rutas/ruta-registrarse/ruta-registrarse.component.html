@@ -2,23 +2,31 @@
   <div *ngIf="formGroup" class="vh-100 row m-0 align-items-center justify-content-center d-flex flex-row justify-content-center">
     <img class="rounded-circle" id="imgEstilo" alt="persona" src="https://us.123rf.com/450wm/tuktukdesign/tuktukdesign1606/tuktukdesign160600119/59070200-icono-de-usuario-hombre-perfil-hombre-de-negocios-avatar-icono-persona-en-la-ilustraci%C3%B3n-vectorial.jpg?ver=6">
     <form [formGroup]="formGroup" class="col-auto container bg-dark text-light" id="formulario">
-      <div id="posicionObjetos">
-        <div class="form-group entradas" id="espacioImg">
-          <label for="correo_electronico">Correo Electrónico:</label>
-          <input formControlName="correo" type="email" class="form-control" id="correo_electronico" placeholder="example@email.com">
+      <div id="posicionObjetos" class="row" id="espacioImg">
+        <div class="col-6">
+          <div class="form-group entradas" >
+            <label for="nombre">Nombre completos:</label>
+            <input formControlName="nombre" type="text" class="form-control" id="nombre" placeholder="Nombre completos">
+          </div>
         </div>
         <div class="form-group entradas">
           <label for="contrasena">Contraseña:</label>
           <input formControlName="contrasena" type="password" class="form-control" id="contrasena" placeholder="***************">
         </div>
+        <div class="form-group entradas"></div>
+          <label for="correo_electronico">Correo Electrónico:</label>
+          <input formControlName="correo" type="email" class="form-control" id="correo_electronico" placeholder="example@email.com">
+        </div>
+
         <div class="d-flex flex-row justify-content-center">
-          <button [disabled]="formGroup.invalid" (click)="iniciarSesion()" type="submit" class="btn btn-primary entradas" id="colorBoton">Iniciar Sesión</button>
+          <button [disabled]="formGroup.invalid" (click)="registrarse()" type="submit" class="btn btn-primary entradas" id="colorBoton">¡REGISTRATE YA!</button>
         </div>
         <div class="d-flex flex-row justify-content-center">
-        <span>¿No tienes una cuenta? <a [routerLink]="['/registrarse']" id="enlace">Registrate aquí</a>
+          <span>¿No tienes una cuenta? <a [routerLink]="['/registro']" id="enlace">Registrate aquí</a>
         </span>
         </div>
       </div>
     </form>
   </div>
 </div>
+

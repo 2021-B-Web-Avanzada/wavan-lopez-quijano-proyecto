@@ -14,6 +14,7 @@ import { EstrellasComponent } from './componentes/estrellas/estrellas.component'
 import { ComentarioComponent } from './componentes/comentario/comentario.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { RutaLoginComponent } from './rutas/ruta-login/ruta-login.component';
+import { RutaRegistrarseComponent } from './rutas/ruta-registrarse/ruta-registrarse.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { RutaLoginComponent } from './rutas/ruta-login/ruta-login.component';
     SocialMediaComponent,
     EstrellasComponent,
     ComentarioComponent,
-    RutaLoginComponent
+    RutaLoginComponent,
+    RutaRegistrarseComponent
   ],
   imports: [
     BrowserModule,

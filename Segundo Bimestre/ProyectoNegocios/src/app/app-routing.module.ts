@@ -5,6 +5,7 @@ import {RutaNegocioComponent} from "./rutas/ruta-negocio/ruta-negocio.component"
 import {RutaNegociosPropiosComponent} from "./rutas/ruta-negocios-propios/ruta-negocios-propios.component";
 import {RutaEditarNegocioPropioComponent} from "./rutas/ruta-editar-negocio-propio/ruta-editar-negocio-propio.component";
 import {RutaLoginComponent} from "./rutas/ruta-login/ruta-login.component";
+import {RutaRegistrarseComponent} from "./rutas/ruta-registrarse/ruta-registrarse.component";
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: RutaLoginComponent,
+  },
+  {
+    path: 'registrarse',
+    component: RutaRegistrarseComponent
   }
 ];
 

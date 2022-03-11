@@ -45,6 +45,16 @@ export class UsuarioAPIService {
       .single()
     return { data, error };
   }
+  // Read By Correo y Contraseña
+  async readUsuarioPorCorreoYContrasena(correo_electronico: string, contrasena: string){
+    const { data, error } = await this.supabaseClient
+      .from<UsuarioModelo>(this.TABLA_USUARIO)
+      .select()
+      .eq('correo_electronico', correo_electronico)
+      .eq('contrasena', contrasena)
+      .single()
+    return { data, error }
+  }
 
   // Update
   async updateUsuario(usuario: UsuarioModelo) {
