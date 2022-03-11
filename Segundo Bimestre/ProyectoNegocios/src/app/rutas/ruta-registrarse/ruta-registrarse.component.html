@@ -6,26 +6,33 @@
         <div class="col-6">
           <div class="form-group entradas" >
             <label for="nombre">Nombre completos:</label>
-            <input formControlName="nombre" type="text" class="form-control" id="nombre" placeholder="Nombre completos">
+            <input type="text" class="form-control" id="nombre" placeholder="Nombre completos">
+          </div>
+          <div class="form-group entradas">
+            <label for="contrasena">Contraseña:</label>
+            <input type="password" class="form-control" id="contrasena" placeholder="***************">
+          </div>
+          <div class="row">
+            <div class="form-group entradas">
+              <label for="fecha">Contraseña:</label>
+              <input type="date" class="form-control" id="fecha" placeholder="***************">
+            </div>
           </div>
         </div>
-        <div class="form-group entradas">
-          <label for="contrasena">Contraseña:</label>
-          <input formControlName="contrasena" type="password" class="form-control" id="contrasena" placeholder="***************">
-        </div>
+
         <div class="form-group entradas"></div>
           <label for="correo_electronico">Correo Electrónico:</label>
-          <input formControlName="correo" type="email" class="form-control" id="correo_electronico" placeholder="example@email.com">
+          <input type="email" class="form-control" id="correo_electronico" placeholder="example@email.com">
         </div>
 
         <div class="d-flex flex-row justify-content-center">
-          <button [disabled]="formGroup.invalid" (click)="registrarse()" type="submit" class="btn btn-primary entradas" id="colorBoton">¡REGISTRATE YA!</button>
+          <button (click)="registrarse()" type="submit" class="btn btn-primary entradas" id="colorBoton">¡REGISTRATE YA!</button>
         </div>
         <div class="d-flex flex-row justify-content-center">
           <span>¿No tienes una cuenta? <a [routerLink]="['/registro']" id="enlace">Registrate aquí</a>
         </span>
         </div>
-      </div>
+   
     </form>
   </div>
 </div>
