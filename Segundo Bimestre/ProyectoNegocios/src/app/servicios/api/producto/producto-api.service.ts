@@ -26,7 +26,7 @@ export class ProductoAPIService {
   }
 
   // Read All
-  async getProductos(id_negocio: number) {
+  async readProductos(id_negocio: number) {
     const { data, error } = await this.supabaseClient
       .from<ProductoModelo>(this.TABLA_PRODUCTO)
       .select()
@@ -35,7 +35,7 @@ export class ProductoAPIService {
   }
 
   // Read By ID
-  async getProductoPorID(id_negocio: number, id_producto: number) {
+  async readProductoPorID(id_negocio: number, id_producto: number) {
     const { data, error } = await this.supabaseClient
       .from<ProductoModelo>(this.TABLA_PRODUCTO)
       .select()

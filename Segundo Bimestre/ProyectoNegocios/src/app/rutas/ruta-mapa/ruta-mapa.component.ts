@@ -50,7 +50,7 @@ export class RutaMapaComponent implements OnInit {
       // Obtener categorias
       this.categorias = queryCategorias.data as CategoriaModelo[];
       // Cnsultar provincias
-      return this.provinciaAPIService.getProvincias();
+      return this.provinciaAPIService.readProvincias();
     }).then(queryProvincias => {
       // Obtener provincias
       this.provincias = queryProvincias.data as ProvinciaModelo[];

@@ -55,13 +55,13 @@ export class RutaNegocioComponent implements OnInit {
         this.negocio = queryNegocio.data as NegocioModelo;
         // Calcular estrellas
         this.puntajePromedio = this.calcularPuntajePromedio();
-        return this.provinciaAPIService.getProvinciaPorID(this.negocio.id_provincia);
+        return this.provinciaAPIService.readProvinciaPorID(this.negocio.id_provincia);
       })
       .then(queryProvincia => {
         // Obtener codigo telefonico
         this.codigo_telefonico = queryProvincia.data?.codigo_telefonico;
         // Consultar productos
-        return this.productoAPIService.getProductos(this.negocio!.id_negocio);
+        return this.productoAPIService.readProductos(this.negocio!.id_negocio);
       })
       .then(queryProductos => {
         // Obtener productos del negocio

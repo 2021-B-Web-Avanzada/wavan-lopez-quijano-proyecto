@@ -1,1 +1,26 @@
-<p>negocio works!</p>
+<div class="card mb-3 negocioPropio">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="..." class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <div class="d-flex flex-row justify-content-between">
+          <div class="col-8">
+            <h5 class="card-title">{{negocio!.nombre}}</h5>
+            <p class="card-text"><strong>Provincia:</strong></p>
+            <p class="card-text"><strong></strong></p>
+            <p class="card-text"><strong></strong></p>
+          </div>
+          <div class="col-4">
+            <app-social-media [enlace_facebook]="negocio!.enlace_facebook"
+                              [enlace_instagram]="negocio!.enlace_instagram"
+                              [enlace_sitio_web]="negocio!.enlace_sitio_web"
+            ></app-social-media>
+          </div>
+        </div>
+        <p class="card-text"><strong></strong></p>
+      </div>
+    </div>
+  </div>
+</div>

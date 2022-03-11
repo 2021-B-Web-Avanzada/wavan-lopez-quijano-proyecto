@@ -77,7 +77,7 @@ export class RutaRegistrarseComponent implements OnInit {
   }
 
   prepararInformacion(){
-    const valor = this.provinciaAPI.getProvincias()
+    const valor = this.provinciaAPI.readProvincias()
       .then(queryProvincia => {
         if (queryProvincia.error === null ){
           this.listaProvincias = queryProvincia.data
@@ -93,7 +93,7 @@ export class RutaRegistrarseComponent implements OnInit {
   }
   registrarse(){
     if (this.validarContrasena()){
-      
+
     }
   }
 }

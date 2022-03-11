@@ -43,6 +43,15 @@ export class NegocioAPIService {
     return { data, error };
   }
 
+  // Read Por ID del usuario propietario del negocio
+  async readNegociosPorIDUsuario(id_usuario: number) {
+    const { data, error } = await this.supabaseClient
+      .from<NegocioModelo>(this.TABLA_NEGOCIO)
+      .select()
+      .eq('id_usuario', id_usuario)
+    return { data, error };
+  }
+
   // Update All
   async updateNegocio(negocio: NegocioModelo) {
     const {data, error} = await this.supabaseClient

@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {NegocioModelo} from "../../modelos/negocio.modelo";
+import {ProvinciaModelo} from "../../modelos/provincia.modelo";
+import {ProvinciaAPIService} from "../../servicios/api/provincia/provincia-api.service";
 
 @Component({
   selector: 'app-negocio',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NegocioComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private readonly provinciaAPIService: ProvinciaAPIService,
+  ) { }
+
+  @Input() negocio?: NegocioModelo;
+  provincia?: ProvinciaModelo;
 
   ngOnInit(): void {
+    // Consultar provincia
+    // this.provinciaAPIService.readProvinciaPorID()
   }
 
 }

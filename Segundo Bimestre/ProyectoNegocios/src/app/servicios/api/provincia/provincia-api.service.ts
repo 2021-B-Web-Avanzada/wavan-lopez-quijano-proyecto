@@ -26,7 +26,7 @@ export class ProvinciaAPIService {
   }
 
   // Read All
-  async getProvincias() {
+  async readProvincias() {
     const { data, error } = await this.supabaseClient
       .from<ProvinciaModelo>(this.TABLA_PROVINCIA)
       .select()
@@ -34,7 +34,7 @@ export class ProvinciaAPIService {
   }
 
   // Read By ID
-  async getProvinciaPorID(id_provincia: number) {
+  async readProvinciaPorID(id_provincia: number) {
     const { data, error } = await this.supabaseClient
       .from<ProvinciaModelo>(this.TABLA_PROVINCIA)
       .select()
