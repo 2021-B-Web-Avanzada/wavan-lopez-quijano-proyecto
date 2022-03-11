@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {NegocioAPIService} from "../../servicios/api/negocio-api.service";
+import {NegocioAPIService} from "../../servicios/api/negocio/negocio-api.service";
+import {NegocioModelo} from "../../modelos/negocio.modelo";
+import {ProductoAPIService} from "../../servicios/api/producto/producto-api.service";
+import {ProductoModelo} from "../../modelos/producto.modelo";
+import {ComentarioAPIService} from "../../servicios/api/comentario/comentario-api.service";
+import {ComentarioModelo} from "../../modelos/comentario.modelo";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-ruta-negocio',
@@ -12,66 +18,90 @@ export class RutaNegocioComponent implements OnInit {
   constructor(
     private readonly activatedRoute: ActivatedRoute,
     private readonly negocioAPIService: NegocioAPIService,
+    private readonly productoAPIService: ProductoAPIService,
+    private readonly comentarioAPIService: ComentarioAPIService,
+    private readonly formBuilder: FormBuilder,
   ) { }
 
-  // TODO: Recibir informacion de la BDD en el ngOnInit
-  negocio = {
-    enlace_facebook: 'https://www.facebook.com/',
-    enlace_instagram: 'https://www.instagram.com/',
-    enlace_sitio_web: 'https://www.wikipedia.com/',
-    telefono_fijo: '2325128',
-    telefono_movil: '0999999999',
-  }
-  productos = [
-    {nombre: 'Producto1', descripcion: 'descripcion1 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt', precio: 15.99,},
-    {nombre: 'Producto2', descripcion: 'descripcion2', precio: 16.99,},
-    {nombre: 'Producto3', descripcion: 'descripcion3', precio: 16.99,},
-    {nombre: 'Producto4', descripcion: 'descripcion4', precio: 16.99,},
-    {nombre: 'Producto5', descripcion: 'descripcion5', precio: 16.99,},
-    {nombre: 'Producto6', descripcion: 'descripcion6', precio: 16.99,},
-    {nombre: 'Producto7', descripcion: 'descripcion7', precio: 16.99,},
-    {nombre: 'Producto8', descripcion: 'descripcion8', precio: 16.99,},
-    {nombre: 'Producto9', descripcion: 'descripcion9', precio: 16.99,},
-  ];
-  comentarios = [
-    {titulo: "Titulo 1", mensaje: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt",
-      fecha: '31-12-9999', puntaje: Math.floor(Math.random() * 4) + 1},
-    {titulo: "Titulo 2", mensaje: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt",
-      fecha: '31-12-9999', puntaje: Math.floor(Math.random() * 4) + 1},
-    {titulo: "Titulo 3", mensaje: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt",
-      fecha: '31-12-9999', puntaje: Math.floor(Math.random() * 4) + 1},
-  ];
-
-
+  // Información de la BD
+  negocio?: NegocioModelo;
+  productos?: ProductoModelo[];
+  comentarios?: ComentarioModelo[];
 
   puntajePromedio?: number;
   cantidadComentarios?: number;
 
+  // Escribir comentario
+  comentarioFormGroup?: FormGroup;
+
   ngOnInit(): void {
     // Parámetros de consulta
-    this.activatedRoute.params
-      .subscribe({
-        next: (params) => {
-          const id_negocio = params['id_negocio'];
-          console.log(this.negocioAPIService.getNegocioPorID(id_negocio));
-        }
-      })
-
-    // TODO: Obtener datos del negocio
-
-    // Calcular estrellas
-    this.puntajePromedio = this.calcularPuntajePromerio();
-
-    // TODO: Obtener lista de comentarios
-    this.comentarios = this.comentarios;
-    this.cantidadComentarios = this.comentarios.length;
-
-    // TODO
+    this.activatedRoute.params.subscribe({
+      next: (params) => {
+        const id_negocio = params['id_negocio'];
+        // Consulta a la BD
+        this.negocioAPIService.readNegocioPorID(id_negocio)
+          .then(queryNegocio => {
+            // Obtener datos del negocio
+            this.negocio = queryNegocio.data as NegocioModelo;
+            // Calcular estrellas
+            this.puntajePromedio = this.calcularPuntajePromedio();
+            // Consultar productos
+            return this.productoAPIService.getProductos(this.negocio.id_negocio);
+          })
+          .then(queryProductos => {
+            // Obtener productos del negocio
+            this.productos = queryProductos.data as ProductoModelo[];
+            // Consultar comentarios
+            return this.comentarioAPIService.readComentarios(this.negocio!.id_negocio);
+          })
+          .then(queryComentarios => {
+            // Obtener comentarios del negocio
+            this.comentarios = queryComentarios.data as ComentarioModelo[];
+            this.cantidadComentarios = this.comentarios.length;
+            // Preparar formulario
+            this.prepararFormulario();
+          });
+      }
+    })
   }
 
-  calcularPuntajePromerio(): number {
-    // TODO: Implementar
-    return 4;
+  calcularPuntajePromedio(): number {
+    const suma_puntajes = this.negocio?.suma_puntajes;
+    const cantidad_comentarios = this.negocio?.cantidad_comentarios;
+    return Math.round((suma_puntajes as number) / (cantidad_comentarios as number));
+  }
+
+  enviarComentario() {
+
+  }
+
+  marcarPuntaje(puntaje: number) {
+    if (this.comentarioFormGroup) {
+      this.comentarioFormGroup.get('puntaje')?.setValue(puntaje);
+    }
+  }
+
+  prepararFormulario() {
+    this.comentarioFormGroup = this.formBuilder.group({
+      comentario: new FormControl({
+        value: '',
+        disabled: false,
+      }, [
+        Validators.required,
+        Validators.minLength(20),
+        Validators.maxLength(150),
+      ]),
+      puntaje: new FormControl({
+        value: 3,
+        disabled: false,
+      }, [
+        Validators.required,
+        Validators.min(1),
+        Validators.max(5),
+        Validators.pattern('[1-5]'),
+      ]),
+    });
   }
 
 }

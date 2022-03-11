@@ -5,6 +5,7 @@ export interface NegocioModelo {
   nombre: string;
   descripcion: string;
   suma_puntajes: number;
+  cantidad_comentarios: number;
   latitud: number;
   longitud: number;
   provincia: string;

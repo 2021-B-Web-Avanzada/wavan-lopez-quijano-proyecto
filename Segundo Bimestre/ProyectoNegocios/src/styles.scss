@@ -9,6 +9,12 @@ nav {
   font-size: 3vh;
   color: white;
 }
+.avatar {
+  border-radius: 50%;
+  height: 5vh;
+  width: 5vh;
+  object-fit: cover;
+}
 /* Scroll Bar */
 ::-webkit-scrollbar {
   width: 8px;

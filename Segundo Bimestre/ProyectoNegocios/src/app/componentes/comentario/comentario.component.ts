@@ -1,4 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {ComentarioModelo} from "../../modelos/comentario.modelo";
+import {UsuarioModelo} from "../../modelos/usuario.modelo";
+import {UsuarioAPIService} from "../../servicios/api/usuario/usuario-api.service";
 
 @Component({
   selector: 'app-comentario',
@@ -7,17 +10,19 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class ComentarioComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private readonly usuarioAPIService: UsuarioAPIService,
+  ) { }
 
-  // TODO: Definir estructura del comentario
-  @Input() comentario?: {
-    titulo: string,
-    mensaje: string,
-    fecha: string,
-    puntaje: number,
-  };
+  @Input() comentario?: ComentarioModelo;
+  usuario?: UsuarioModelo;
 
   ngOnInit(): void {
+    // Obtener datos del usuario que hizo el comentario
+    this.usuarioAPIService.readUsuarioPorID(this.comentario!.id_usuario)
+      .then(queryUsuario => {
+        this.usuario = queryUsuario.data as UsuarioModelo;
+      })
   }
 
 }

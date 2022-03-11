@@ -4,6 +4,7 @@ import {RutaMapaComponent} from "./rutas/ruta-mapa/ruta-mapa.component";
 import {RutaNegocioComponent} from "./rutas/ruta-negocio/ruta-negocio.component";
 import {RutaNegociosPropiosComponent} from "./rutas/ruta-negocios-propios/ruta-negocios-propios.component";
 import {RutaEditarNegocioPropioComponent} from "./rutas/ruta-editar-negocio-propio/ruta-editar-negocio-propio.component";
+import {RutaLoginComponent} from "./rutas/ruta-login/ruta-login.component";
 
 const routes: Routes = [
   {
@@ -22,6 +23,10 @@ const routes: Routes = [
     path: 'misNegocios/:id_negocio',
     component: RutaEditarNegocioPropioComponent,
   },
+  {
+    path: 'login',
+    component: RutaLoginComponent,
+  }
 ];
 
 @NgModule({

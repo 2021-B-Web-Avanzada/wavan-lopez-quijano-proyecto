@@ -12,6 +12,8 @@ import {GoogleMapsModule} from "@angular/google-maps";
 import { SocialMediaComponent } from './componentes/social-media/social-media.component';
 import { EstrellasComponent } from './componentes/estrellas/estrellas.component';
 import { ComentarioComponent } from './componentes/comentario/comentario.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { RutaLoginComponent } from './rutas/ruta-login/ruta-login.component';
 
 @NgModule({
   declarations: [
@@ -23,12 +25,15 @@ import { ComentarioComponent } from './componentes/comentario/comentario.compone
     RutaEditarNegocioPropioComponent,
     SocialMediaComponent,
     EstrellasComponent,
-    ComentarioComponent
+    ComentarioComponent,
+    RutaLoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     GoogleMapsModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

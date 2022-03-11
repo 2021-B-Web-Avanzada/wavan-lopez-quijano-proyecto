@@ -7,6 +7,6 @@ export interface UsuarioModelo{
   genero: string;
   provincia_residencia: string;
   negocios_registrados: number;
-  contraseña: string;
+  contrasena: string;
   rol: string;
 }

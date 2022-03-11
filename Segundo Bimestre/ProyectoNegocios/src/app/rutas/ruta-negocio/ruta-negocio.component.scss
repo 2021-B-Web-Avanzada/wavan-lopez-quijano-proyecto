@@ -1,3 +1,8 @@
+.imagenNegocio {
+  max-height: 50vh;
+  width: 100%;
+  object-fit: cover;
+}
 #nombreNegocio {
   font-family: 'Roboto', sans-serif;
   font-weight: 700;
@@ -45,4 +50,26 @@ ol {
 }
 .panelComentarios {
   max-height: 55vh;
+}
+.panelComentarios:hover {
+  box-shadow: inset 0 0 10px 5px #AAAAAA;
+}
+.enviarComentario {
+  background-color: #02a2b9;
+  border-radius: 15px;
+  border: 0;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: 2vh;
+  width: 20vh;
+}
+textarea {
+  width: 50vh;
+  border: none;
+  resize: none;
+}
+.comentarioFormulario {
+  width: 50vh;
+  border: 1px solid #02a2b9;
 }
