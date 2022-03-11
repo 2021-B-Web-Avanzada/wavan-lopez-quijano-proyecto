@@ -99,6 +99,7 @@ export class RutaMapaComponent implements OnInit {
     this.router.navigate(url);
   }
 
+  // TODO: Filtrar que solo se muestren negocios ACTIVOS
   restablecerMarcadores(negociosFiltrados: NegocioModelo[]) {
     this.marcadores = [];
     negociosFiltrados.forEach( (negocio) => {

@@ -19,7 +19,10 @@ export class NegocioComponent implements OnInit {
 
   ngOnInit(): void {
     // Consultar provincia
-    // this.provinciaAPIService.readProvinciaPorID()
+    this.provinciaAPIService.readProvinciaPorID(this.negocio!.id_provincia)
+      .then(queryProvincia => {
+        this.provincia = queryProvincia.data as ProvinciaModelo;
+      })
   }
 
 }

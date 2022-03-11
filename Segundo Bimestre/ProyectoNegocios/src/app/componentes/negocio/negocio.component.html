@@ -1,25 +1,25 @@
 <div class="card mb-3 negocioPropio">
   <div class="row g-0">
     <div class="col-md-4">
-      <img src="..." class="img-fluid rounded-start" alt="...">
+      <img [src]="negocio!.fotografia" class="img-fluid rounded-start imagenNegocioPropio">
     </div>
     <div class="col-md-8">
       <div class="card-body">
         <div class="d-flex flex-row justify-content-between">
-          <div class="col-8">
+          <div class="col-9">
             <h5 class="card-title">{{negocio!.nombre}}</h5>
-            <p class="card-text"><strong>Provincia:</strong></p>
-            <p class="card-text"><strong></strong></p>
-            <p class="card-text"><strong></strong></p>
+            <div class="card-text"><strong>Provincia: </strong>{{provincia!.nombre}}</div>
+            <div class="card-text"><strong>Ubicación: </strong>{{negocio!.latitud}} - {{negocio!.longitud}}</div>
+            <div class="card-text"><strong>Teléfono: </strong>({{provincia!.codigo_telefonico | number:'2.0-0'}}) {{negocio!.telefono_fijo}}</div>
           </div>
-          <div class="col-4">
+          <div class="col-3">
             <app-social-media [enlace_facebook]="negocio!.enlace_facebook"
                               [enlace_instagram]="negocio!.enlace_instagram"
                               [enlace_sitio_web]="negocio!.enlace_sitio_web"
             ></app-social-media>
           </div>
         </div>
-        <p class="card-text"><strong></strong></p>
+        <p class="card-text"><strong>Descripción: </strong>{{negocio!.descripcion}}</p>
       </div>
     </div>
   </div>

@@ -1,10 +1,23 @@
-<div class="d-flex flex-row">
-  <div class="row" *ngFor="let negocio of negocios;">
-    <app-negocio class="col-10"
-                 [negocio]="negocio"
-    ></app-negocio>
-    <div class="col-2">
-      botones
+<div class="panel justify-content-center mt-3">
+  <div *ngFor="let negocio of negocios;">
+    <div class="row mx-5">
+      <div class="col-9">
+        <app-negocio
+          [negocio]="negocio"
+        ></app-negocio>
+      </div>
+      <div class="col-2">
+        <div class="row align-items-center btnNegocioPropio" style="height: 22vh">
+          <div class="col">
+            <a class="btn btn-success col-8" [routerLink]="['/misNegocios', negocio.id_negocio]">Editar</a>
+            <button *ngIf="negocio.estado != ESTADO_PENDIENTE" class="btn btn-warning col-8 my-2"
+                    (click)="cambiarEstadoNegocio(negocio)">
+              {{negocio.estado == ESTADO_ACTIVO? 'Inactivar' : 'Activar'}}
+            </button>
+            <button class="btn btn-danger col-8" (click)="eliminarNegocio(negocio.id_negocio)">Eliminar</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
