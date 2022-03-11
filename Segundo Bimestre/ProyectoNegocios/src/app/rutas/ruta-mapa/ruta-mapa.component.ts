@@ -25,7 +25,7 @@ export class RutaMapaComponent implements OnInit {
 
   // Sin filtros
   TODAS_CATEGORIAS = { id_categoria: 0, nombre: 'Categorías'};
-  TODAS_PROVINCIAS = { id_provincia: 0, nombre: 'Provincias'};
+  TODAS_PROVINCIAS: ProvinciaModelo = { id_provincia: 0, nombre: 'Provincias', latitud: 0, longitud: 0, zoom: 0, codigo_telefonico: 0};
   categoriaSeleccionada = this.TODAS_CATEGORIAS;
   provinciaSeleccionada = this.TODAS_PROVINCIAS;
 
@@ -66,12 +66,15 @@ export class RutaMapaComponent implements OnInit {
     this.filtrarMarcadores();
   }
 
-  seleccionarProvincia(provincia: any) {
+  seleccionarProvincia(provincia: ProvinciaModelo) {
     // TODO: Que al seleccionar una provincia se cambie la posicion del mapa
     // TODO: Esto se puede hacer si en la tabla de la BD se ponen 2 columnas
     // TODO: de LAT y LNG para guardar con que datos cambiar el centroMapa{}
     // TODO: También se debería ajustar un zoom adecuado para el tamaño de una provincia
     this.provinciaSeleccionada = provincia;
+    console.log('PROVINCIA==', provincia.latitud, provincia.latitud)
+    this.centroMapa = {lat: provincia.latitud as number , lng: provincia.longitud as number}
+    console.log(provincia)
     this.filtrarMarcadores();
   }
 
@@ -90,6 +93,7 @@ export class RutaMapaComponent implements OnInit {
       negociosFiltrados = negociosFiltrados.filter(negocio => {
         return negocio.id_provincia == this.provinciaSeleccionada.id_provincia;
       });
+
     }
     this.restablecerMarcadores(negociosFiltrados);
   }
