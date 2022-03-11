@@ -3,6 +3,8 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {ProvinciaAPIService} from "../../servicios/api/provincia/provincia-api.service";
 import {ProvinciaModelo} from "../../modelos/provincia.modelo";
+import {UsuarioModelo} from "../../modelos/usuario.modelo";
+import {UsuarioAPIService} from "../../servicios/api/usuario/usuario-api.service";
 
 @Component({
   selector: 'app-ruta-registrarse',
@@ -12,12 +14,13 @@ import {ProvinciaModelo} from "../../modelos/provincia.modelo";
 export class RutaRegistrarseComponent implements OnInit {
 
   formGroup?: FormGroup;
-  listaProvincias: ProvinciaModelo[] | null = []
+  listaProvincias: ProvinciaModelo[] | null = [];
 
   constructor(
     private readonly formBuilder: FormBuilder,
     private readonly router: Router,
-    private readonly provinciaAPI: ProvinciaAPIService
+    private readonly provinciaAPI: ProvinciaAPIService,
+    private readonly usuarioAPI: UsuarioAPIService
   ) { }
 
   ngOnInit(): void {
@@ -89,11 +92,38 @@ export class RutaRegistrarseComponent implements OnInit {
     const contrasena = this.formGroup?.get('contrasena')?.value;
     const contrasenaConfirmacion = this.formGroup?.get('contrasenaConfirmacion')?.value;
     return contrasena === contrasenaConfirmacion;
-
   }
+
   registrarse(){
     if (this.validarContrasena()){
-
+      const nombre = this.formGroup?.get('nombre')?.value;
+      const contrasena = this.formGroup?.get('contrasena')?.value;
+      const fechaNacimiento = this.formGroup?.get('fecha')?.value;
+      const correo = this.formGroup?.get('correo')?.value;
+      const genero = this.formGroup?.get('genero')?.value;
+      const provincia = this.formGroup?.get('provincia')?.value;
+      const usuarioNuevo : UsuarioModelo = {
+        nombre_completo: nombre,
+        correo_electronico: correo,
+        fotografia: 'https://www.10wallpaper.com/wallpaper/1366x768/2005/Night_city_glow_lights_2020_HD_Photography_1366x768.jpg',
+        fecha_nacimiento: fechaNacimiento,
+        genero: genero,
+        provincia_residencia: provincia,
+        negocios_registrados: 0,
+        contrasena: contrasena,
+        rol: 'Usuario'
+      }
+      this.usuarioAPI.createUsuario(usuarioNuevo)
+        .then(
+          (queryUsuario) => {
+              //TODO: Alerta
+              alert('Usuario Creado con Éxito')
+              this.router.navigate(['/login'])
+          }
+        )
+    } else {
+      //TODO: Alerta
+      alert('Las contraseñas no son las misma')
     }
   }
 }

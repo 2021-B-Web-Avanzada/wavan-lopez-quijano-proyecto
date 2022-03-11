@@ -1,5 +1,5 @@
 export interface UsuarioModelo{
-  id_usuario: number;
+  id_usuario?: number;
   nombre_completo: string;
   correo_electronico: string;
   fotografia: string;
