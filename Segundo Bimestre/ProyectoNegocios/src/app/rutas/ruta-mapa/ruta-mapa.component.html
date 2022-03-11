@@ -14,7 +14,7 @@
           >Todas</a>
         </li>
         <li *ngFor="let categoria of categorias;">
-          <a class="dropdown-item" (click)="seleccionarCategoria({ id_categoria: categoria.id_categoria , nombre: categoria.nombre })"
+          <a class="dropdown-item" (click)="seleccionarCategoria(categoria)"
              [class.active]="categoriaSeleccionada.nombre == categoria.nombre">
             {{categoria.nombre}}
           </a>
@@ -36,7 +36,7 @@
           >Todas</a>
         </li>
         <li *ngFor="let provincia of provincias;">
-          <a class="dropdown-item" (click)="seleccionarProvincia({ id_provincia: provincia.id_provincia , nombre: provincia.nombre })"
+          <a class="dropdown-item" (click)="seleccionarProvincia(provincia)"
              [class.active]="provinciaSeleccionada.nombre == provincia.nombre">
             {{provincia.nombre}}
           </a>

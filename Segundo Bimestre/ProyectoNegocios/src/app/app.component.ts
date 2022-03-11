@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from "./servicios/autenticacion/autenticacion.service";
+import {RutaLoginComponent} from "./rutas/ruta-login/ruta-login.component";
 
 @Component({
   selector: 'app-root',
@@ -13,14 +14,24 @@ export class AppComponent implements OnInit {
     private readonly authService: AuthService,
   ) {}
 
-  // TODO: con una variable Output en el Login se puede cambiar
-  // TODO: este valor para mostrar o no el menu del usuario (esquina superior derecha)
-  mostrarMenuUsuario = false;
+  // TODO: poner que se haga visble=false y borrar la imagen cuando se deslogea
+  infoMenuUsuario = {
+    visible: false,
+    imagenPerfil: '',
+  };
 
   ngOnInit(): void {
 
   }
 
+  // TODO: Que mismo con esto?
+  onActivate(component: any) {
+    // if (component instanceof RutaLoginComponent)
+      // this.infoMenuUsuario = component.habilitarMenuUsuario()
 
+  }
 
+  onDeactivate() {
+
+  }
 }

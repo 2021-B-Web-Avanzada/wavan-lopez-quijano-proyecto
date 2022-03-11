@@ -18,13 +18,13 @@ export class RutaMapaComponent implements OnInit {
   constructor(
     private readonly router: Router,
     private readonly negocioAPIService: NegocioAPIService,
-    private readonly catgoriaAPIService: CategoriaAPIService,
+    private readonly categoriaAPIService: CategoriaAPIService,
     private readonly provinciaAPIService: ProvinciaAPIService,
     private readonly autenticacion: AuthService
   ) { }
 
   // Sin filtros
-  TODAS_CATEGORIAS = { id_categoria: 0, nombre: 'Categorías'};
+  TODAS_CATEGORIAS: CategoriaModelo = { id_categoria: 0, nombre: 'Categorías', descripcion: ''};
   TODAS_PROVINCIAS: ProvinciaModelo = { id_provincia: 0, nombre: 'Provincias', latitud: 0, longitud: 0, zoom: 0, codigo_telefonico: 0};
   categoriaSeleccionada = this.TODAS_CATEGORIAS;
   provinciaSeleccionada = this.TODAS_PROVINCIAS;
@@ -47,7 +47,7 @@ export class RutaMapaComponent implements OnInit {
       // Obtener marcadores
       this.restablecerMarcadores(this.negocios);
       // Consultar categorias
-      return this.catgoriaAPIService.readCategorias();
+      return this.categoriaAPIService.readCategorias();
     }).then(queryCategorias => {
       // Obtener categorias
       this.categorias = queryCategorias.data as CategoriaModelo[];
@@ -61,7 +61,7 @@ export class RutaMapaComponent implements OnInit {
     console.log(this.autenticacion.id_usuario)
   }
 
-  seleccionarCategoria(categoria: any) {
+  seleccionarCategoria(categoria: CategoriaModelo) {
     this.categoriaSeleccionada = categoria;
     this.filtrarMarcadores();
   }
@@ -73,7 +73,7 @@ export class RutaMapaComponent implements OnInit {
     // TODO: También se debería ajustar un zoom adecuado para el tamaño de una provincia
     this.provinciaSeleccionada = provincia;
     console.log('PROVINCIA==', provincia.latitud, provincia.latitud)
-    this.centroMapa = {lat: provincia.latitud as number , lng: provincia.longitud as number}
+    this.centroMapa = {lat: provincia.latitud , lng: provincia.longitud}
     console.log(provincia)
     this.filtrarMarcadores();
   }

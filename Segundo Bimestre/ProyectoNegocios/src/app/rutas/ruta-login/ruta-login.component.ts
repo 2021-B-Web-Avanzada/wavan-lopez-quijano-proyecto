@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {UsuarioAPIService} from "../../servicios/api/usuario/usuario-api.service";
@@ -13,10 +13,13 @@ export class RutaLoginComponent implements OnInit {
 
   formGroup?: FormGroup;
 
+  @Output() infoMenuUsuario = new EventEmitter<{visible: boolean, imagenPerfil: string}>();
+  imagenPerfil = '';
+
   constructor(
     private readonly formBuilder: FormBuilder,
     private readonly router: Router,
-    private readonly usuarioAPI: UsuarioAPIService,
+    private readonly usuarioAPIService: UsuarioAPIService,
     private readonly autenticacion: AuthService
   ) { }
 
@@ -47,22 +50,35 @@ export class RutaLoginComponent implements OnInit {
     const correo = this.formGroup?.get('correo')?.value;
     const contrasena = this.formGroup?.get('contrasena')?.value;
 
-    const valor = this.usuarioAPI.readUsuarioPorCorreoYContrasena(correo,contrasena)
+    const valor = this.usuarioAPIService.readUsuarioPorCorreoYContrasena(correo,contrasena)
       .then(queryUsuario => {
         if( queryUsuario.error != null ){
           alert("Su contraseña o usuario se encuentran incorrectos.")
+          // TODO: Limpiar datos (al menos el campo de la clave)
         } else {
+          this.autenticacion.inicioSesion = true;
+          this.autenticacion.id_usuario = queryUsuario.data!.id_usuario as number;
+          this.autenticacion.rol = queryUsuario!.data!.rol;
+          // Habilitar menú de usuario
+          this.imagenPerfil = queryUsuario!.data!.fotografia;
+          // Emitir al componente padre
+          this.habilitarMenuUsuario();
+          console.log();
+          // Redireccionar al usuario
           if(queryUsuario.data?.rol == 'Usuario'){
             this.router.navigate(["/mapa"]);
-            this.autenticacion.inicioSesion = true;
-            this.autenticacion.rol = queryUsuario.data.rol;
-            this.autenticacion.id_usuario = queryUsuario.data.id_usuario as number;
           } else {
-            //TODO: PONER LA PANTALLA A LA QUE SE DIRIGE EL ADMIN
-            this.router.navigate(["/misNegocios"])
+            this.router.navigate(["/negociosPendientes"]);
           }
         }
       })
+  }
+
+  habilitarMenuUsuario() {
+    this.infoMenuUsuario.emit({
+      visible: true,
+      imagenPerfil: this.imagenPerfil,
+    });
   }
 
 }
