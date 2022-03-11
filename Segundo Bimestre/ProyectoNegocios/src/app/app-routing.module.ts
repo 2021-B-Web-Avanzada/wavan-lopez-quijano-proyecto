@@ -7,6 +7,7 @@ import {RutaEditarNegocioPropioComponent} from "./rutas/ruta-editar-negocio-prop
 import {RutaLoginComponent} from "./rutas/ruta-login/ruta-login.component";
 import {RutaRegistrarseComponent} from "./rutas/ruta-registrarse/ruta-registrarse.component";
 import {RutaAprobarNegociosComponent} from "./rutas/ruta-aprobar-negocios/ruta-aprobar-negocios.component";
+import {RutaPerfilUsuarioComponent} from "./rutas/ruta-perfil-usuario/ruta-perfil-usuario.component";
 
 const routes: Routes = [
   // Usuario
@@ -38,6 +39,10 @@ const routes: Routes = [
   {
     path: 'registrarse',
     component: RutaRegistrarseComponent
+  },
+  {
+    path: 'perfil_usuario/:id_usuario',
+    component: RutaPerfilUsuarioComponent
   },
   // TODO: Administrador
   {

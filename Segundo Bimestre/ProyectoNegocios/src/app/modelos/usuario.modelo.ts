@@ -6,7 +6,7 @@ export interface UsuarioModelo{
   fecha_nacimiento: string;
   genero: string;
   provincia_residencia: string;
-  negocios_registrados: number;
-  contrasena: string;
-  rol: string;
+  negocios_registrados?: number;
+  contrasena?: string;
+  rol?: string;
 }

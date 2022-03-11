@@ -16,6 +16,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { RutaLoginComponent } from './rutas/ruta-login/ruta-login.component';
 import { RutaRegistrarseComponent } from './rutas/ruta-registrarse/ruta-registrarse.component';
 import { RutaAprobarNegociosComponent } from './rutas/ruta-aprobar-negocios/ruta-aprobar-negocios.component';
+import { RutaPerfilUsuarioComponent } from './rutas/ruta-perfil-usuario/ruta-perfil-usuario.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { RutaAprobarNegociosComponent } from './rutas/ruta-aprobar-negocios/ruta
     ComentarioComponent,
     RutaLoginComponent,
     RutaRegistrarseComponent,
-    RutaAprobarNegociosComponent
+    RutaAprobarNegociosComponent,
+    RutaPerfilUsuarioComponent
   ],
   imports: [
     BrowserModule,

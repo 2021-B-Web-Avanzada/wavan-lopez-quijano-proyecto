@@ -1,0 +1,77 @@
+<div class="container-fluid" style="padding: 0 5%">
+  <div class="row">
+    <!-- COLUMNA 1 FOTOGRAFÍA -->
+    <div class="col-3 py-5">
+      <div class="d-flex flex-row">
+        <div>
+          <img [src]="usuario_actual!.fotografia"
+               style="border-radius: 50%; height: 30vh; width: 30vh; object-fit: cover; margin-left: 15%; margintop: 15%; margin-bottom: 5%">
+          <!-- TODO: PONER LO DEL ROL Y ESAS COSAS -->
+          <div style="text-align: center">
+            <span><strong>Negocios registrados:</strong>{{usuario_actual?.negocios_registrados}}</span>
+          </div>
+          <div class="d-flex flex-row">
+            <button type="submit" class="btn btn-primary entradas colorBoton" (click)="verNegocios()">Ver mis negocios
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-8"  *ngIf="formGroup">
+      <form id="formulario" [formGroup]="formGroup">
+        <div class="row row-col-2" style="padding-top: 10%;">
+          <!-- COLUMNA 2 INFORMACIÓN -->
+          <div class="col" id="posicion">
+            <div class="posicionObjetos">
+              <div class="form-group entradas">
+                <label for="nombre">Nombres completos:</label>
+                <input formControlName="nombre" type="text" class="form-control" id="nombre">
+              </div>
+              <div class="form-group entradas">
+                <label for="correo">Correo electrónico:</label>
+                <input formControlName="correo" type="text" class="form-control" id="correo">
+              </div>
+              <div class="form-group entradas">
+                <label for="fecha">Fecha de Nacimiento:</label>
+                <input formControlName="fecha" type="date" class="form-control" id="fecha">
+              </div>
+            </div>
+          </div>
+          <!-- COLUMNA 3 INFORMACIÓN -->
+          <div class="col">
+            <div class="posicionObjetos">
+              <div class="form-group entradas">
+                <label for="fotografia">Enlace fotografía:</label>
+                <input formControlName="fotografia" type="text" class="form-control" id="fotografia">
+              </div>
+            <div class="entradas posicionObjeto">
+              <label for="genero">Género:</label>
+              <select formControlName="genero" class="form-select" id="genero">
+                <option value="Femenino">Femenino</option>
+                <option value="Masculino">Masculino</option>
+              </select>
+            </div>
+            <div class="entradas posicionObjeto">
+              <label for="provincia">Provincia:</label>
+              <select formControlName="provincia" class="form-select" id="provincia">
+                <option *ngFor="let provincia of listaProvincias"
+                        value="{{provincia.nombre}}">{{provincia.nombre}}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="d-flex flex-row" style="padding-top: 5%;float: right;">
+            <button [disabled]="formGroup.invalid" type="submit" class="btn btn-primary entradas colorBoton"
+                    (click)="guardarUsuario()">Guardar cambios
+            </button>
+          </div>
+
+        </div>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>
+
