@@ -15,6 +15,7 @@ import { ComentarioComponent } from './componentes/comentario/comentario.compone
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { RutaLoginComponent } from './rutas/ruta-login/ruta-login.component';
 import { RutaRegistrarseComponent } from './rutas/ruta-registrarse/ruta-registrarse.component';
+import { RutaAprobarNegociosComponent } from './rutas/ruta-aprobar-negocios/ruta-aprobar-negocios.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { RutaRegistrarseComponent } from './rutas/ruta-registrarse/ruta-registra
     EstrellasComponent,
     ComentarioComponent,
     RutaLoginComponent,
-    RutaRegistrarseComponent
+    RutaRegistrarseComponent,
+    RutaAprobarNegociosComponent
   ],
   imports: [
     BrowserModule,

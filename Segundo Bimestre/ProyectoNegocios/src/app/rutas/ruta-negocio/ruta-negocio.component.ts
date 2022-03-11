@@ -81,6 +81,9 @@ export class RutaNegocioComponent implements OnInit {
   calcularPuntajePromedio(): number {
     const suma_puntajes = this.negocio?.suma_puntajes;
     const cantidad_comentarios = this.negocio?.cantidad_comentarios;
+    if (cantidad_comentarios == 0) {
+      return 0;
+    }
     return Math.round((suma_puntajes as number) / (cantidad_comentarios as number));
   }
 

@@ -52,6 +52,15 @@ export class NegocioAPIService {
     return { data, error };
   }
 
+  // Read Negocios por estado
+  async readNegociosPorEstado(estado: string) {
+    const { data, error } = await this.supabaseClient
+      .from<NegocioModelo>(this.TABLA_NEGOCIO)
+      .select()
+      .eq('estado', estado)
+    return { data, error };
+  }
+
   // Update All
   async updateNegocio(negocio: NegocioModelo) {
     const {data, error} = await this.supabaseClient

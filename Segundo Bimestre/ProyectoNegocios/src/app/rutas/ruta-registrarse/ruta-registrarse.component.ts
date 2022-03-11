@@ -14,7 +14,7 @@ import {UsuarioAPIService} from "../../servicios/api/usuario/usuario-api.service
 export class RutaRegistrarseComponent implements OnInit {
 
   formGroup?: FormGroup;
-  listaProvincias: ProvinciaModelo[] | null = [];
+  listaProvincias: ProvinciaModelo[] = [];
 
   constructor(
     private readonly formBuilder: FormBuilder,
@@ -81,9 +81,9 @@ export class RutaRegistrarseComponent implements OnInit {
 
   prepararInformacion(){
     const valor = this.provinciaAPI.readProvincias()
-      .then(queryProvincia => {
-        if (queryProvincia.error === null ){
-          this.listaProvincias = queryProvincia.data
+      .then(queryProvincias => {
+        if (queryProvincias.error === null ){
+          this.listaProvincias = queryProvincias.data as ProvinciaModelo[];
         }
       })
   }

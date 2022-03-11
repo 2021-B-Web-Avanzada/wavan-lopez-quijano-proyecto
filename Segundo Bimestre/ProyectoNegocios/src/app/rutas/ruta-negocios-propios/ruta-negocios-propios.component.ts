@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {NegocioAPIService} from "../../servicios/api/negocio/negocio-api.service";
 import {NegocioModelo} from "../../modelos/negocio.modelo";
+import {AuthService} from "../../servicios/autenticacion/autenticacion.service";
 
 @Component({
   selector: 'app-ruta-negocios-propios',
@@ -11,6 +12,7 @@ export class RutaNegociosPropiosComponent implements OnInit {
 
   constructor(
     private readonly negocioAPIService: NegocioAPIService,
+    private readonly authService: AuthService,
   ) { }
 
   negocios?: NegocioModelo[];
@@ -21,8 +23,8 @@ export class RutaNegociosPropiosComponent implements OnInit {
 
   ngOnInit(): void {
     // Consultar negocios
-    // TODO: Usar id del usuario logeado dentro del read...()
-    this.negocioAPIService.readNegociosPorIDUsuario(1)
+    const id_usuario = this.authService.id_usuario;
+    this.negocioAPIService.readNegociosPorIDUsuario(id_usuario)
       .then(queryNegocios => {
         this.negocios = queryNegocios.data as NegocioModelo[];
       })

@@ -27,6 +27,9 @@
       <div class="col-7">
         <h2>Productos o servicios</h2>
         <!-- Itera por la lista de productos -->
+        <div *ngIf="productos!.length == 0" class="d-flex flex-row px-5 my-4">
+          No se han registrado productos
+        </div>
         <ol class="list-group list-group-numbered">
           <li *ngFor="let producto of productos"
             class="list-group-item d-flex justify-content-between align-items-start">

@@ -6,8 +6,15 @@ import {RutaNegociosPropiosComponent} from "./rutas/ruta-negocios-propios/ruta-n
 import {RutaEditarNegocioPropioComponent} from "./rutas/ruta-editar-negocio-propio/ruta-editar-negocio-propio.component";
 import {RutaLoginComponent} from "./rutas/ruta-login/ruta-login.component";
 import {RutaRegistrarseComponent} from "./rutas/ruta-registrarse/ruta-registrarse.component";
+import {RutaAprobarNegociosComponent} from "./rutas/ruta-aprobar-negocios/ruta-aprobar-negocios.component";
 
 const routes: Routes = [
+  // Usuario
+  {
+    path: '',
+    redirectTo: '/mapa',
+    pathMatch: 'full',
+  },
   {
     path: 'mapa',
     component: RutaMapaComponent,
@@ -31,6 +38,11 @@ const routes: Routes = [
   {
     path: 'registrarse',
     component: RutaRegistrarseComponent
+  },
+  // TODO: Administrador
+  {
+    path: 'negociosPendientes',
+    component: RutaAprobarNegociosComponent,
   }
 ];
 

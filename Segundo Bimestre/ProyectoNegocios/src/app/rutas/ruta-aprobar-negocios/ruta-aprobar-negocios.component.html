@@ -1,0 +1,19 @@
+<div class="panel justify-content-center mt-3">
+  <div *ngFor="let negocio of negociosPendientes;">
+    <div class="row mx-5">
+      <div class="col-9">
+        <app-negocio
+          [negocio]="negocio"
+        ></app-negocio>
+      </div>
+      <div class="col-9 col-lg-2">
+        <div class="row align-items-center mx-0 mx-md-2" style="height: 22vh">
+          <div class="col">
+            <button class="btn btn-success col-12 col-md-8" (click)="aprobarNegocio(negocio)">Aprobar</button>
+            <button class="btn btn-danger col-12 col-md-8 mt-2" (click)="rechazarNegocio(negocio)">Rechazar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
