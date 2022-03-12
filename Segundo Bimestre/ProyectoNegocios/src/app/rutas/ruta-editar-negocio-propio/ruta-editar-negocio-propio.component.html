@@ -41,7 +41,77 @@
 
   <!-- Panel derecho -->
   <div class="col-12 col-lg-6 px-0 py-3">
-    aasasad<br>aasasad<br>aasasad<br>aasasad<br>aasasad<br>aasasad<br>aasasad<br>aasasad<br>aasasad<br>
+    <div class="container-fluid panel">
+      <div class="row">
+        <div class="col" *ngIf="formGroup">
+          <form [formGroup]="formGroup">
+            <div class="form-group entradas">
+              <label for="nombre_negocio">Nombre del negocio:</label>
+              <input formControlName="nombre_negocio" type="text" class="form-control" id="nombre_negocio">
+            </div>
+            <div class="form-group entradas">
+              <label for="descripcion_negocio">Descripción del negocio:</label>
+              <textarea formControlName="descripcion_negocio" class="form-control" id="descripcion_negocio" rows="2" placeholder="Escribe sobre tu negocio" style="border: 1px solid #D0D6DC; width: 100%"></textarea>
+            </div>
+            <!-- DOS COLUMNAS -->
+            <div class="row row-col-2">
+              <div class="col">
+                <div class="form-group entradas">
+                  <label for="longitud">Longitud:</label>
+                  <input formControlName="longitud" type="text" class="form-control" id="longitud">
+                </div>
+                <div class="entradas posicionObjeto">
+                  <label for="provincia">Provincia:</label>
+                  <select formControlName="provincia" class="form-select" id="provincia">
+                    <option *ngFor="let provincia of listaProvincias"
+                            value="{{provincia.id_provincia}}">{{provincia.nombre}}</option>
+                  </select>
+                  <div class="form-group entradas">
+                    <label for="enlace_facebook">Enlace Sitio Facebook:</label>
+                    <input formControlName="enlace_facebook" type="text" class="form-control" id="enlace_facebook">
+                  </div>
+                  <div class="form-group entradas">
+                    <label for="enlace_instagram">Enlace Sitio Instagram:</label>
+                    <input formControlName="enlace_instagram" type="text" class="form-control" id="enlace_instagram">
+                  </div>
+                  <div class="form-group entradas">
+                    <label for="enlace_sitio_web">Enlace Sitio Web:</label>
+                    <input formControlName="enlace_sitio_web" type="text" class="form-control" id="enlace_sitio_web">
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-group entradas">
+                  <label for="latitud">Latitud:</label>
+                  <input formControlName="latitud" type="text" class="form-control" id="latitud">
+                </div>
+                <div class="entradas posicionObjeto">
+                  <label for="categorias">Categorias:</label>
+                  <select formControlName="categorias" class="form-select" id="categorias">
+                    <option *ngFor="let categorias of listaCategorias"
+                            value="{{categorias.id_categoria}}">{{categorias.nombre}}</option>
+                  </select>
+                </div>
+                <div class="form-group entradas">
+                  <label for="telefono_fijo">Teléfono Fijo:</label>
+                  <input formControlName="telefono_fijo" type="text" class="form-control" id="telefono_fijo">
+                </div>
+                <div class="form-group entradas">
+                  <label for="telefono_movil">Teléfono Móvil:</label>
+                  <input formControlName="telefono_movil" type="text" class="form-control" id="telefono_movil">
+                </div>
+              </div>
+            </div>
+            <div class="d-flex flex-row">
+              <button type="submit" class="btn btn-primary entradas"
+                      style="float: end; background-color: #02A2B9; min-width: 20vw;" (click)="guardarInformacionNegocio()" >
+                Guardar cambios
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
 
 
   </div>
