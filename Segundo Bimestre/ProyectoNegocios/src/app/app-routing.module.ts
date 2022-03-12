@@ -47,7 +47,6 @@ const routes: Routes = [
     path: 'registrarse',
     component: RutaRegistrarseComponent
   },
-  // TODO: Administrador
   {
     path: 'negociosPendientes',
     component: RutaAprobarNegociosComponent,

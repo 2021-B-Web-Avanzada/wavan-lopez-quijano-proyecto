@@ -5,6 +5,8 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {UsuarioAPIService} from "../../servicios/api/usuario/usuario-api.service";
 import {ProvinciaModelo} from "../../modelos/provincia.modelo";
 import {ProvinciaAPIService} from "../../servicios/api/provincia/provincia-api.service";
+import Swal from "sweetalert2";
+import {AuthService} from "../../servicios/autenticacion/autenticacion.service";
 
 @Component({
   selector: 'app-ruta-perfil-usuario',
@@ -23,6 +25,7 @@ export class RutaPerfilUsuarioComponent implements OnInit {
     private readonly usuarioAPIService: UsuarioAPIService,
     private readonly provinciaAPI: ProvinciaAPIService,
     private readonly router:Router,
+    private readonly authService: AuthService,
   ) { }
 
   ngOnInit(): void {
@@ -116,8 +119,21 @@ export class RutaPerfilUsuarioComponent implements OnInit {
     this.usuarioAPIService.updateUsuario(usuarioActualizar)
       .then(
         (queryUsuario) => {
-          //TODO: Alerta
-          alert('Usuario Actualizado con Éxito')
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+          })
+          Toast.fire({
+            icon: 'success',
+            title: 'Usuario actualizado exitosamente'
+          })
           this.router.navigate(['mapa']);
         }
       )

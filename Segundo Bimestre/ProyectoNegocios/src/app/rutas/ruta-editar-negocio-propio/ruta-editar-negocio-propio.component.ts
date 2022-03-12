@@ -9,6 +9,7 @@ import {CategoriaModelo} from "../../modelos/categoria.modelo";
 import {ProvinciaModelo} from "../../modelos/provincia.modelo";
 import {ProvinciaAPIService} from "../../servicios/api/provincia/provincia-api.service";
 import {CategoriaAPIService} from "../../servicios/api/categoria/categoria-api.service";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-ruta-editar-negocio-propio',
@@ -180,11 +181,22 @@ export class RutaEditarNegocioPropioComponent implements OnInit {
       .then(
         (queryNegocio) => {
           if( queryNegocio.error === null ){
-            //TODO: Alerta
-            alert('Negocio Actualizado con Éxito')
+            const Toast = Swal.mixin({
+              toast: true,
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+              didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+              }
+            })
+            Toast.fire({
+              icon: 'success',
+              title: 'Negocio actualizado exitosamente'
+            })
             this.router.navigate(['misNegocios']);
-          }else{
-            console.log(queryNegocio.error)
           }
         }
       )

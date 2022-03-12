@@ -3,6 +3,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {UsuarioAPIService} from "../../servicios/api/usuario/usuario-api.service";
 import {AuthService} from "../../servicios/autenticacion/autenticacion.service";
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-ruta-login',
@@ -53,8 +54,21 @@ export class RutaLoginComponent implements OnInit {
     const valor = this.usuarioAPIService.readUsuarioPorCorreoYContrasena(correo,contrasena)
       .then(queryUsuario => {
         if( queryUsuario.error != null ){
-          alert("Su contraseña o usuario se encuentran incorrectos.")
-          // TODO: Limpiar datos (al menos el campo de la clave)
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+          })
+          Toast.fire({
+            icon: 'error',
+            title: 'Su contraseña o usuario se encuentran incorrectos'
+          })
         } else {
           this.autenticacion.inicioSesion = true;
           this.autenticacion.id_usuario = queryUsuario.data!.id_usuario as number;
@@ -63,7 +77,6 @@ export class RutaLoginComponent implements OnInit {
           this.imagenPerfil = queryUsuario!.data!.fotografia;
           // Emitir al componente padre
           this.habilitarMenuUsuario();
-          console.log();
           // Redireccionar al usuario
           if(queryUsuario.data?.rol == 'Usuario'){
             this.router.navigate(["/mapa"]);

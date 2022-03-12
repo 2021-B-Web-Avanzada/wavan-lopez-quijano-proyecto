@@ -18,9 +18,6 @@ export class ComentarioAPIService {
 
   constructor() { }
 
-  // TODO: En los métodos CRUD que necesiten clave foránea pon primero la Foreign Key y luego la Primary Key de ser necesario
-  // TODO: (Para tener un estándar xd)
-
   // Create
   async createComentario(comentario: ComentarioModelo){
     const { data, error } = await this.supabaseClient

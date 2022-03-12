@@ -17,9 +17,6 @@ export class CategoriaAPIService {
 
   constructor() { }
 
-  // TODO: En los métodos CRUD que necesiten clave foránea pon primero la Foreign Key y luego la Primary Key de ser necesario
-  // TODO: (Para tener un estándar xd)
-
   // Read All
   async readCategorias() {
     const { data, error } = await this.supabaseClient

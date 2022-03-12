@@ -28,6 +28,7 @@ export class RutaMapaComponent implements OnInit {
   TODAS_PROVINCIAS: ProvinciaModelo = { id_provincia: 0, nombre: 'Provincias', latitud: 0, longitud: 0, zoom: 0, codigo_telefonico: 0};
   categoriaSeleccionada = this.TODAS_CATEGORIAS;
   provinciaSeleccionada = this.TODAS_PROVINCIAS;
+  ESTADO_ACTIVO = 'Activo';
 
   centroMapa = {
     lat: -0.16176268339680047,
@@ -57,8 +58,6 @@ export class RutaMapaComponent implements OnInit {
       // Obtener provincias
       this.provincias = queryProvincias.data as ProvinciaModelo[];
     });
-    //TODO: MANERA DE OBTENER INFO
-    console.log(this.autenticacion.id_usuario)
   }
 
   seleccionarCategoria(categoria: CategoriaModelo) {
@@ -67,14 +66,8 @@ export class RutaMapaComponent implements OnInit {
   }
 
   seleccionarProvincia(provincia: ProvinciaModelo) {
-    // TODO: Que al seleccionar una provincia se cambie la posicion del mapa
-    // TODO: Esto se puede hacer si en la tabla de la BD se ponen 2 columnas
-    // TODO: de LAT y LNG para guardar con que datos cambiar el centroMapa{}
-    // TODO: También se debería ajustar un zoom adecuado para el tamaño de una provincia
     this.provinciaSeleccionada = provincia;
-    console.log('PROVINCIA==', provincia.latitud, provincia.latitud)
     this.centroMapa = {lat: provincia.latitud , lng: provincia.longitud}
-    console.log(provincia)
     this.filtrarMarcadores();
   }
 
@@ -103,25 +96,24 @@ export class RutaMapaComponent implements OnInit {
     this.router.navigate(url);
   }
 
-  // TODO: Filtrar que solo se muestren negocios ACTIVOS
   restablecerMarcadores(negociosFiltrados: NegocioModelo[]) {
     this.marcadores = [];
     negociosFiltrados.forEach( (negocio) => {
-      console.log(negocio.longitud, negocio.longitud);
-      this.marcadores.push({
-        id_negocio: negocio.id_negocio,
-        posicion: {
-          lat: negocio.latitud,
-          lng: negocio.longitud,
-        },
-        label: {
-          color: 'white',
-
-          text: negocio.nombre,
-        },
-        title: negocio.nombre,
-        options: { animation: google.maps.Animation.BOUNCE },
-      })
+      if (negocio.estado === this.ESTADO_ACTIVO){
+        this.marcadores.push({
+          id_negocio: negocio.id_negocio,
+          posicion: {
+            lat: negocio.latitud,
+            lng: negocio.longitud,
+          },
+          label: {
+            color: 'white',
+            text: negocio.nombre,
+          },
+          title: negocio.nombre,
+          options: { animation: google.maps.Animation.BOUNCE },
+        })
+      }
     });
   }
 

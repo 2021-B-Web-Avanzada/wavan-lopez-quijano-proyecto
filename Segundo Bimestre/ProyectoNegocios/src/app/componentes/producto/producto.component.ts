@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ProductoModelo} from "../../modelos/producto.modelo";
 import {ProductoAPIService} from "../../servicios/api/producto/producto-api.service";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import Swal from 'sweetalert2';
 
 @Component({
   selector: '[app-producto]',
@@ -90,31 +91,46 @@ export class ProductoComponent implements OnInit {
   }
 
   eliminarProducto() {
-    // TODO: Alerta => Esta seguro?
-    this.productoAPIService.deleteProductoPorID(this.producto!.id_producto)
-      .then(resultadoEliminacion => {
-        this.indiceABorrar.emit(this.index);
-      })
+    Swal.fire({
+      title: '¿Está seguro de querer eliminar el producto seleccionado?',
+      text: "Esta acción no se puede deshacer",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Eliminar',
+      cancelButtonText: 'No',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.productoAPIService.deleteProductoPorID(this.producto!.id_producto)
+          .then(resultadoEliminacion => {
+            Swal.fire(
+              'Producto eliminado',
+              '',
+              'success'
+            )
+            this.indiceABorrar.emit(this.index);
+          })
+      }
+    });
   }
 
   actualizarProducto() {
-    // if (this.puedeActualizar) {
-      const productoActualizado: ProductoModelo = {
-        id_producto: this.producto?.id_producto as number,
-        id_negocio: this.producto?.id_negocio as number,
-        nombre: this.nombreForm?.get('nombre')?.value,
-        descripcion: this.descripcionForm?.get('descripcion')?.value,
-        precio: this.precioForm?.get('precio')?.value,
-      }
-      this.productoAPIService.updateProducto(productoActualizado)
-        .then(resultadoActualizacion => {
-          this.actualizacion.emit({
-            indice: this.index as number,
-            producto: productoActualizado,
-          })
+    const productoActualizado: ProductoModelo = {
+      id_producto: this.producto?.id_producto as number,
+      id_negocio: this.producto?.id_negocio as number,
+      nombre: this.nombreForm?.get('nombre')?.value,
+      descripcion: this.descripcionForm?.get('descripcion')?.value,
+      precio: this.precioForm?.get('precio')?.value,
+    }
+    this.productoAPIService.updateProducto(productoActualizado)
+      .then(resultadoActualizacion => {
+        this.actualizacion.emit({
+          indice: this.index as number,
+          producto: productoActualizado,
         })
-      this.editable = false;
-    // }
+      })
+    this.editable = false;
   }
 
 }

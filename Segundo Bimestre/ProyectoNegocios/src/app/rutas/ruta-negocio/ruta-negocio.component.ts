@@ -8,6 +8,8 @@ import {ComentarioAPIService} from "../../servicios/api/comentario/comentario-ap
 import {ComentarioModelo} from "../../modelos/comentario.modelo";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ProvinciaAPIService} from "../../servicios/api/provincia/provincia-api.service";
+import {AuthService} from "../../servicios/autenticacion/autenticacion.service";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-ruta-negocio',
@@ -23,6 +25,7 @@ export class RutaNegocioComponent implements OnInit {
     private readonly comentarioAPIService: ComentarioAPIService,
     private readonly provinciaAPIService: ProvinciaAPIService,
     private readonly formBuilder: FormBuilder,
+    private readonly authService: AuthService,
   ) { }
 
   // Información de la BD
@@ -93,8 +96,7 @@ export class RutaNegocioComponent implements OnInit {
       const hoy = new Date();
       const comentario = {
         id_negocio: this.negocio!.id_negocio,
-        // TODO: Obtener ID del usuario al iniciar sesión
-        id_usuario: 1,
+        id_usuario: this.authService.id_usuario,
         titulo: texto.length >= 35? texto.substring(0, 34) : texto,
         mensaje: texto,
         fecha: hoy.getFullYear() + '-' + hoy.getMonth() + '-' + hoy.getDate(),
@@ -102,13 +104,28 @@ export class RutaNegocioComponent implements OnInit {
       }
       this.comentarioAPIService.createComentario(comentario)
         .then(resultado => {
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+          })
+          Toast.fire({
+            icon: 'success',
+            title: 'Comentario creado exitosamente!'
+          })
           // Consultar cambios en los comentarios
           return this.comentarioAPIService.readComentarios(this.negocio!.id_negocio)
         })
         .then(queryComentarios => {
           // Actualizar comentarios
           this.comentarios = queryComentarios.data as ComentarioModelo[];
-          // TODO: Calcular los nuevos datos para el negocio
+          // Calcular los nuevos datos para el negocio
           const nuevaSumaPuntajes = this.comentarios.reduce((ac, comentario) => {
             return ac + comentario.puntaje
           }, 0);
