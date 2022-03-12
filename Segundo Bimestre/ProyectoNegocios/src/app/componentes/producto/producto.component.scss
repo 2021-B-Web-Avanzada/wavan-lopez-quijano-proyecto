@@ -6,5 +6,8 @@
 }
 svg {
   fill: #00aeef;
-  height: 3vh;
+  height: 2vh;
+}
+svg:hover {
+  box-shadow: 0 0 2px 1px #00aeef;
 }
