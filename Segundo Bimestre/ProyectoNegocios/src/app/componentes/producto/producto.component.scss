@@ -6,8 +6,14 @@
 }
 svg {
   fill: #00aeef;
-  height: 2vh;
+  height: 5vh;
 }
-svg:hover {
-  box-shadow: 0 0 2px 1px #00aeef;
+.fila {
+  display: table-row;
+  width: 100vh;
+}
+.celda {
+  display: table-cell;
+  width: 100vh;
+  padding-right: 3vh;
 }

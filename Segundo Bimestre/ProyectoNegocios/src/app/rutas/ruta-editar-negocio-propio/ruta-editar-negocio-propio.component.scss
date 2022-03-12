@@ -86,3 +86,17 @@ textarea:focus {
   font-weight: 300;
   font-size: 2vh;
 }
+.table { display: table; }
+.filaTabla { display: table-row; }
+.celdaTabla {
+  display: table-cell;
+  width: 25vh;
+}
+.btnGuardar {
+  fill: #00aeef;
+  height: 2vh;
+}
+.tituloTabla {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+}

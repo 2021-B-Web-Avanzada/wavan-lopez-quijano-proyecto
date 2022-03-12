@@ -42,12 +42,11 @@ export class RutaEditarNegocioPropioComponent implements OnInit {
 
   borrarFilaProducto(indiceABorrar: number) {
     // Eliminar fila de la tabla
-    // delete this.productos![indiceABorrar];
-    // Actualizar lista de productos
-    console.log('Antes', this.productos)
     this.productos?.splice(indiceABorrar, 1);
-    console.log('Despues', this.productos)
   }
 
+  actualizarProducto(info: {indice: number, producto: ProductoModelo}) {
+    this.productos![info.indice] = info.producto;
+  }
 
 }
