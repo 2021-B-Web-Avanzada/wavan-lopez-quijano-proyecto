@@ -86,8 +86,12 @@ textarea:focus {
   font-weight: 300;
   font-size: 2vh;
 }
-.table { display: table; }
-.filaTabla { display: table-row; }
+.table {
+  display: table;
+}
+.filaTabla {
+  display: table-row;
+}
 .celdaTabla {
   display: table-cell;
   width: 25vh;
@@ -99,6 +103,7 @@ textarea:focus {
 .tituloTabla {
   font-family: 'Roboto', sans-serif;
   font-weight: 700;
+  background-color:  #02A2B9;
 }
 #posicionObjetos{
   margin-top: 5%;
