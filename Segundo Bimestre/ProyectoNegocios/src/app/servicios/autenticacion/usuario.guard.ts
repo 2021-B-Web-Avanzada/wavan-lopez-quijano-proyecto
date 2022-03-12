@@ -4,7 +4,7 @@ import {Observable} from "rxjs";
 import {AuthService} from "./autenticacion.service";
 
 @Injectable()
-export class EsAdministradorGuard implements CanActivate{
+export class EsUsuarioGuard implements CanActivate{
 
   // Inyección de dependencias
   constructor(
@@ -14,11 +14,21 @@ export class EsAdministradorGuard implements CanActivate{
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    const esUsuario = this._authService.esUsuario();
-    if(!esUsuario){
-      this._router.navigate(['/login']);
+    let esUsuario = this._authService.esUsuario();
+    if (esUsuario){
+      return true
+    } else {
+      return  new Observable<boolean>((observer) => {
+        setTimeout(() =>{
+          esUsuario = this._authService.esUsuario()
+          if(!esUsuario){
+            this._router.navigate(['/login']);
+          }
+          observer.next(esUsuario)
+          observer.complete()
+        }, 1000*3 )
+      })
     }
-    return esUsuario;
   }
 
 }
