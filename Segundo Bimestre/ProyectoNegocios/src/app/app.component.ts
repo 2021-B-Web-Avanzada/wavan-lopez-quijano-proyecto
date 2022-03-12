@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from "./servicios/autenticacion/autenticacion.service";
 import {RutaLoginComponent} from "./rutas/ruta-login/ruta-login.component";
+import {Subscription} from "rxjs";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -11,27 +13,39 @@ export class AppComponent implements OnInit {
   title = 'ProyectoNegocios';
 
   constructor(
-    private readonly authService: AuthService,
+    public readonly authService: AuthService,
+    private readonly router: Router,
   ) {}
 
-  // TODO: poner que se haga visble=false y borrar la imagen cuando se deslogea
   infoMenuUsuario = {
     visible: false,
     imagenPerfil: '',
   };
+  suscripcion?: Subscription;
 
   ngOnInit(): void {
 
   }
 
-  // TODO: Que mismo con esto?
   onActivate(component: any) {
-    // if (component instanceof RutaLoginComponent)
-      // this.infoMenuUsuario = component.habilitarMenuUsuario()
-
+    if (component instanceof RutaLoginComponent) {
+      this.suscripcion = component.infoMenuUsuario.subscribe({
+        next: (data: {visible: boolean, imagenPerfil: string}) => {
+          this.infoMenuUsuario.visible = data.visible;
+          this.infoMenuUsuario.imagenPerfil = data.imagenPerfil;
+        }
+      })
+    }
   }
 
   onDeactivate() {
+    if (this.suscripcion) {
+      this.suscripcion.unsubscribe();
+    }
+  }
 
+  cerrarSesion() {
+    this.authService.cerrarSesion();
+    this.router.navigate(['/login']);
   }
 }

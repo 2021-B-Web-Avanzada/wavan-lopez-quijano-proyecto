@@ -58,7 +58,7 @@ export class RutaLoginComponent implements OnInit {
         } else {
           this.autenticacion.inicioSesion = true;
           this.autenticacion.id_usuario = queryUsuario.data!.id_usuario as number;
-          this.autenticacion.rol = queryUsuario!.data!.rol;
+          this.autenticacion.rol = queryUsuario!.data!.rol as string;
           // Habilitar menú de usuario
           this.imagenPerfil = queryUsuario!.data!.fotografia;
           // Emitir al componente padre

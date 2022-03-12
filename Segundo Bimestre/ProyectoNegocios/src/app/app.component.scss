@@ -1,0 +1,16 @@
+.btnMenuUsuario:focus {
+  box-shadow: none;
+}
+.btnMenuUsuario img:hover {
+  box-shadow: 0 0 5px 2px white;
+}
+.dropdownMenuUsuario {
+  background-color: #80d0dc;
+}
+.dropdownMenuUsuario li a,
+.dropdownMenuUsuario li button {
+  color: black;
+}
+.dropdownMenuUsuario li:hover {
+  background-color: #02a2b9;
+}

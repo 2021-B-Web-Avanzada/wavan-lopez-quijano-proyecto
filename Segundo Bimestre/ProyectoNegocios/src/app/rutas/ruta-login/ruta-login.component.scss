@@ -1,5 +1,5 @@
 #background{
-  background-image: url('https://www.10wallpaper.com/wallpaper/1366x768/2005/Night_city_glow_lights_2020_HD_Photography_1366x768.jpg');
+  background-image: url('https://i.imgur.com/IIFZkKq.png');
   background-repeat: no-repeat;
   min-height: 100vh;
   background-size: cover;
@@ -26,12 +26,19 @@
 }
 #imgEstilo{
   background-color: white;
-  width:170px;
-  height:150px;
+  width:150px;
+  height:145px;
   position: absolute;
   top: 15vh
 }
 #enlace{
   color: #02A2B9;
   text-decoration: none;
+}
+.formularioLogin {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.labelLogin {
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
 }

@@ -16,4 +16,10 @@ export class AuthService{
   esUsuario() {
     return this.inicioSesion && this.rol == 'usuario';
   }
+
+  cerrarSesion() {
+    this.inicioSesion = false;
+    this.rol = '';
+    this.id_usuario = 0;
+  }
 }

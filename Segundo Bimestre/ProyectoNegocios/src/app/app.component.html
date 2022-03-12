@@ -4,11 +4,28 @@
       <img src="https://i.imgur.com/0E93VMt.png" height="50vh" class="pb-2">
       <span id="titulo" class="navbar-brand mb-0 h1 px-3">Negocios Ecuador</span>
     </div>
-    <span>{{infoMenuUsuario.visible}}</span>
-    <span>{{infoMenuUsuario.imagenPerfil}}</span>
-    <div *ngIf="infoMenuUsuario.visible" class="d-flex">
-      <img class="avatar" [src]="infoMenuUsuario.imagenPerfil">
+    <div class="d-flex">
+      <!-- Menú usuario -->
+<!--      TODO: Quitar el '!' -->
+      <div *ngIf="!infoMenuUsuario.visible" class="d-flex">
+        <div class="btn-group dropstart">
+          <button class="btn dropdown-toggle btnMenuUsuario" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            <img class="avatar" [src]="infoMenuUsuario.imagenPerfil">
+          </button>
+          <ul class="dropdown-menu dropdownMenuUsuario" aria-labelledby="dropdownMenuButton1">
+            <li *ngIf="authService.rol == 'Usuario'">
+              <a class="dropdown-item" [routerLink]="['/perfil_usuario', authService.id_usuario]">Ver mi perfil</a>
+            </li>
+            <li *ngIf="authService.rol == 'Usuario'"><hr class="dropdown-divider"></li>
+            <li *ngIf="authService.rol == 'Usuario'">
+              <a class="dropdown-item" [routerLink]="['/misNegocios']">Ver mis negocios</a>
+            </li>
+            <li *ngIf="authService.rol == 'Usuario'"><hr class="dropdown-divider"></li>
+            <li><button class="dropdown-item" (click)="cerrarSesion()">Cerrar sesión</button></li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 </nav>
-<router-outlet (activate)="onActivate($event)"></router-outlet>
+<router-outlet (activate)="onActivate($event)" (deactivate)="onDeactivate()"></router-outlet>
