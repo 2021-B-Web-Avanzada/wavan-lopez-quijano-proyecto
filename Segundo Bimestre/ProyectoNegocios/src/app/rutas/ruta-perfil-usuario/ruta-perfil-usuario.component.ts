@@ -25,7 +25,7 @@ export class RutaPerfilUsuarioComponent implements OnInit {
     private readonly usuarioAPIService: UsuarioAPIService,
     private readonly provinciaAPI: ProvinciaAPIService,
     private readonly router:Router,
-    private readonly authService: AuthService,
+    public readonly authService: AuthService,
   ) { }
 
   ngOnInit(): void {
