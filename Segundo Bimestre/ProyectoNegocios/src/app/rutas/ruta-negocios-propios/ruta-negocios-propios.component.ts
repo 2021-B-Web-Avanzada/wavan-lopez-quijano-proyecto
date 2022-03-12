@@ -34,7 +34,7 @@ export class RutaNegociosPropiosComponent implements OnInit {
   cambiarEstadoNegocio(negocio: NegocioModelo) {
     const nuevoEstado = negocio.estado == this.ESTADO_ACTIVO ? this.ESTADO_INACTIVO : this.ESTADO_ACTIVO;
     Swal.fire({
-      title: '¿Está seguro de querer cambiar el estado a'+ nuevoEstado +'?',
+      title: '¿Está seguro de querer cambiar el estado a '+ nuevoEstado +'?',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -76,7 +76,7 @@ export class RutaNegociosPropiosComponent implements OnInit {
               'success'
             )
             // Consulta los cambios en los negocios
-            return this.negocioAPIService.readNegocios();
+            return this.negocioAPIService.readNegociosPorIDUsuario(this.authService.id_usuario);
           })
           .then(queryNegocios => {
             this.negocios = queryNegocios.data as NegocioModelo[];

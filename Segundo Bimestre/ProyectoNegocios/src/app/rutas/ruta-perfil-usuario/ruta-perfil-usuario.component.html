@@ -7,7 +7,7 @@
           <img [src]="usuario_actual!.fotografia"
                style="border-radius: 50%; height: 30vh; width: 30vh; object-fit: cover; margin-left: 15%; margintop: 15%; margin-bottom: 5%">
           <div *ngIf="authService.esUsuario()" style="text-align: center">
-            <span><strong>Negocios registrados:</strong>{{usuario_actual?.negocios_registrados}}</span>
+            <span><strong>Negocios registrados: </strong> {{usuario_actual?.negocios_registrados}}</span>
           </div>
           <div *ngIf="authService.esUsuario()" class="d-flex flex-row">
             <button type="submit" class="btn btn-primary entradas colorBoton" (click)="verNegocios()">Ver mis negocios
