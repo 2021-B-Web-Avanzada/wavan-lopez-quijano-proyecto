@@ -48,7 +48,7 @@ const routes: Routes = [
   {
     path: 'negociosPendientes',
     component: RutaAprobarNegociosComponent,
-  }
+  },
 ];
 
 @NgModule({
