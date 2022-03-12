@@ -8,30 +8,37 @@ import {RutaLoginComponent} from "./rutas/ruta-login/ruta-login.component";
 import {RutaRegistrarseComponent} from "./rutas/ruta-registrarse/ruta-registrarse.component";
 import {RutaAprobarNegociosComponent} from "./rutas/ruta-aprobar-negocios/ruta-aprobar-negocios.component";
 import {RutaPerfilUsuarioComponent} from "./rutas/ruta-perfil-usuario/ruta-perfil-usuario.component";
+import {EsUsuarioGuard} from "./servicios/autenticacion/usuario.guard";
+import {EsAdministradorGuard} from "./servicios/autenticacion/admin.guard";
 
 const routes: Routes = [
   // Usuario
   {
-    path: '',
-    redirectTo: '/mapa',
-    pathMatch: 'full',
-  },
-  {
     path: 'mapa',
     component: RutaMapaComponent,
+    canActivate: [EsUsuarioGuard]
   },
   {
     path: 'negocio/:id_negocio',
     component: RutaNegocioComponent,
+    canActivate: [EsUsuarioGuard]
   },
   {
     path: 'misNegocios',
     component: RutaNegociosPropiosComponent,
+    canActivate: [EsUsuarioGuard]
   },
   {
     path: 'misNegocios/:id_negocio',
     component: RutaEditarNegocioPropioComponent,
+    canActivate: [EsUsuarioGuard]
   },
+  {
+    path: 'perfil_usuario/:id_usuario',
+    component: RutaPerfilUsuarioComponent,
+    canActivate: [EsUsuarioGuard]
+  },
+  // Todos acceden a estas pantallas
   {
     path: 'login',
     component: RutaLoginComponent,
@@ -40,14 +47,11 @@ const routes: Routes = [
     path: 'registrarse',
     component: RutaRegistrarseComponent
   },
-  {
-    path: 'perfil_usuario/:id_usuario',
-    component: RutaPerfilUsuarioComponent
-  },
   // TODO: Administrador
   {
     path: 'negociosPendientes',
     component: RutaAprobarNegociosComponent,
+    canActivate: [EsAdministradorGuard]
   },
 ];
 

@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RutaMapaComponent } from './rutas/ruta-mapa/ruta-mapa.component';
@@ -18,6 +17,8 @@ import { RutaRegistrarseComponent } from './rutas/ruta-registrarse/ruta-registra
 import { RutaAprobarNegociosComponent } from './rutas/ruta-aprobar-negocios/ruta-aprobar-negocios.component';
 import { RutaPerfilUsuarioComponent } from './rutas/ruta-perfil-usuario/ruta-perfil-usuario.component';
 import { ProductoComponent } from './componentes/producto/producto.component';
+import {EsUsuarioGuard} from "./servicios/autenticacion/usuario.guard";
+import {EsAdministradorGuard} from "./servicios/autenticacion/admin.guard";
 
 
 @NgModule({
@@ -44,7 +45,10 @@ import { ProductoComponent } from './componentes/producto/producto.component';
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [
+    EsAdministradorGuard,
+    EsUsuarioGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

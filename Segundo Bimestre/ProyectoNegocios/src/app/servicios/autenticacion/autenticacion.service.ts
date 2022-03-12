@@ -10,10 +10,10 @@ export class AuthService{
   id_usuario :number = 0;
 
   esAdministrador() {
-    return this.inicioSesion && this.rol == 'administrador';
+    return this.inicioSesion && this.rol === 'Administrador';
   }
 
   esUsuario() {
-    return this.inicioSesion && this.rol == 'usuario';
+    return this.inicioSesion && this.rol === 'Usuario';
   }
 }
